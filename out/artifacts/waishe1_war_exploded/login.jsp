@@ -144,7 +144,7 @@
                                                     <div class="input-group">
                                                         <input type="email" name="email" id="email" class="form__input" style="width: 400px">
                                                         <span class="ui input-group-btn">
-                                                        <button class="btn small button" type="button" id="sendCheckCode">发送验证码</button>
+                                                        <button onclick="sendEmail()" class="btn small button" type="button" id="sendCheckCode">发送验证码</button>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -197,41 +197,62 @@
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </body>
 <script>
-    $(function () {
-            $("#reg_submit").click(function () {
-                $.ajax({
-                    type: "post",
-                    url: "${pageContext.request.contextPath}/user/register",
-                    data:$("#register_form").serialize(),
-                    success:function (data) {
-                        if(data.success) {
-                            alert("注册成功！");
-                            //回到首页
-                            location.href = location.href
-                        }
-                    },
-                    dataType:"json"
-                })
-            });
-
-        $("#login_submit").click(function () {
+var code = ""
+    function sendEmail(){
+        var email = $("#email").val()
+        $.ajax({
+            type: "get",
+            url:"${pageContext.request.contextPath}/user/sendEmail?email="+email,
+            success:function (data) {
+                if(data.success){
+                    alert("验证码已经发送，请注意接收")
+                    code = data.code
+                }else {
+                    alert("您已经登陆了，注册失败")
+                }
+            },
+            dataType:"json"
+        })
+    }
+    //注册ajax
+    $("#reg_submit").click(function () {
+        var input_code = $("#code").val();
+        if(code == input_code){
             $.ajax({
                 type: "post",
-                url:"${pageContext.request.contextPath}/user/login",
-                data:$("#login_form").serialize(),
-                success: function (data) {
-                    if (data.success) {
-                        alert("登陆成功！");
-                        location.href = "default.jsp";
-                    }else{
-                        alert("用户名或密码错误！");
+                url: "${pageContext.request.contextPath}/user/register",
+                data:$("#register_form").serialize(),
+                success:function (data) {
+                    if(data.success) {
+                        alert("注册成功！");
+                        //回到首页
+                        location.href = location.href
                     }
-
                 },
-                dataType: "json"
+                dataType:"json"
             })
+        }else {
+            alert("验证码不正确！")
+        }
 
-        });
-    })
+    });
+
+    $("#login_submit").click(function () {
+        $.ajax({
+            type: "post",
+            url:"${pageContext.request.contextPath}/user/login",
+            data:$("#login_form").serialize(),
+            success: function (data) {
+                if (data.success) {
+                    alert("登陆成功！");
+                    location.href = "default.jsp";
+                }else{
+                    alert("用户名或密码错误！");
+                }
+            },
+            dataType: "json"
+        })
+    });
+
 </script>
 </html>

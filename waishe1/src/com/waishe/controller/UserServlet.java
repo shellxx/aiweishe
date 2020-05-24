@@ -5,8 +5,10 @@ import com.waishe.domain.Product;
 import com.waishe.domain.User;
 import com.waishe.service.Impl.UserServiceImpl;
 import com.waishe.service.UserService;
+import com.waishe.utils.MailUtils;
 import com.waishe.utils.UUIDUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +17,7 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet",urlPatterns = {"/user/*"})
 public class UserServlet extends BaseServlet {
-    /**
-     * 用户注册
-     * @param request
-     * @param response
-     */
+    //用户注册
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取参数
         String username = request.getParameter("username");
@@ -42,12 +40,33 @@ public class UserServlet extends BaseServlet {
 
 
     }
+    //注册发送验证码
+    public void sendEmail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取email
+        String email = request.getParameter("email");
+        //判断session中是否有user
+        User user = (User) request.getSession().getAttribute("user");
 
-    /**
-     * 用户登陆
-     * @param request
-     * @param response
-     */
+        JSONObject jsonObject = new JSONObject();
+        //判断是否已经登陆
+        if(user!=null){
+            jsonObject.put("success",false);
+        }else{
+            String email_code = UUIDUtils.getUUID().substring(0,4);
+            String email_text = "您正在注册「外接无副作用组织集体重组手术馆」，验证码是 : "+email_code;
+            try {
+                MailUtils.sendMail(email,email_text);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+            jsonObject.put("success",true);
+            jsonObject.put("code", email_code);
+        }
+
+        response.getWriter().write(jsonObject.toJSONString());
+    }
+
+    //用户登陆
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取参数
         String username = request.getParameter("username");
@@ -74,6 +93,10 @@ public class UserServlet extends BaseServlet {
         response.sendRedirect(request.getContextPath()+"/");
 
     }
+
+
+
+
     //用户的心愿单
     public void wishlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取user
