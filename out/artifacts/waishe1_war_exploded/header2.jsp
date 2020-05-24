@@ -6,10 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
 </head>
+<style>
+    .login_user:hover , .logout_user:hover , .unlogin_user:hover {
+        border-bottom: 1px solid #5c5958;
+        border-width: 2px;
+        text-decoration: none;
+    }
+</style>
 <body>
 <!-- Header Start -->
 <header class="header header-default site-header">
@@ -73,7 +81,7 @@
                                                 <a href="${pageContext.request.contextPath}/cart.jsp">Track Order</a>
                                             </li>
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/cart.jsp">Wishlist</a>
+                                                <a href="${pageContext.request.contextPath}/user/wishlist">Wishlist</a>
                                             </li>
                                             <li>
                                                 <a href="${pageContext.request.contextPath}/cart.jsp">My Account</a>
@@ -90,9 +98,20 @@
                     </div>
                     <div class="header__col header__right">
                         <div class="toolbar-item d-none d-lg-block">
-                            <a href="${pageContext.request.contextPath}/login.jsp" class="toolbar-btn">
-                                <span>Login</span>
-                            </a>
+                            <c:if test="${empty user}">
+                                <a href="${pageContext.request.contextPath}/login.jsp" class="unlogin_user toolbar-btn">
+                                    <span>Login</span>
+                                </a>
+                            </c:if>
+                            <c:if test="${!empty user}">
+                                <a href="${pageContext.request.contextPath}/" class="login_user toolbar-btn">
+                                    <span>${user.u_username}</span>
+                                </a>
+                                &nbsp; &nbsp;
+                                <a href="${pageContext.request.contextPath}/user/logout" class="logout_user toolbar-btn">
+                                    <span>Logout</span>
+                                </a>
+                            </c:if>
                         </div>
                         <div class="toolbar-item d-block d-lg-none">
                             <a href="#offcanvasnav" class="hamburger-icon js-toolbar menu-btn">

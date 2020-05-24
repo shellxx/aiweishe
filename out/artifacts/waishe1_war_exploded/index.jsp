@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- ************************* CSS Files ************************* -->
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/semantic.css">
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/vendor.css">
 
@@ -136,21 +136,6 @@
               </c:if>
             </c:forEach>
 
-<%--            <div class="col-md-6">--%>
-<%--              <div class="featured-product">--%>
-<%--                <div class="featured-product__inner info-left-bottom">--%>
-<%--                  <figure class="featured-product__image">--%>
-<%--                    <img src="resources/img/products/product-02-500x575.jpg" alt="Featured Product">--%>
-<%--                  </figure>--%>
-<%--                  <div class="featured-product__info wow pbounceInDown" data-wow-duration="1s">--%>
-<%--                    <div class="featured-product__info-inner rotated-info">--%>
-<%--                      <h4 class="featured-product__text">续航持久 <strong>39%</strong> Off</h4>--%>
-<%--                      <h2 class="featured-product__name">鼠标鼠标</h2>--%>
-<%--                    </div>--%>
-<%--                  </div>--%>
-<%--                </div>--%>
-<%--              </div>--%>
-<%--            </div>--%>
           </div>
         </div>
       </section>
@@ -177,17 +162,17 @@
                       <figure class="product__image--holder">
                         <img src="${product.img_t1}" alt="Product">
                       </figure>
-                      <a href="product-details.html" class="product-overlay"></a>
+                      <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}" class="product-overlay"></a>
                       <div class="product__action">
                         <a data-toggle="modal" data-target="#productModal${tag.index}" class="action-btn">
                           <i class="fa fa-eye"></i>
                           <span class="sr-only">Quick View</span>
                         </a>
-                        <a href="wishlist.html" class="action-btn">
+                        <a href="javascript:void(0)" onclick="addToWishlist(${product.pid})" class="action-btn">
                           <i class="fa fa-heart-o"></i>
                           <span class="sr-only">Add to wishlist</span>
                         </a>
-                        <a href="cart.html" class="action-btn">
+                        <a href="javascript:void(0)" onclick="addOneToCart(${product.pid})"  class="action-btn">
                           <i class="fa fa-shopping-cart"></i>
                           <span class="sr-only">Add To Cart</span>
                         </a>
@@ -304,7 +289,7 @@
                                 </div>
                               </div>
                               <button type="button" class="btn btn-shape-square btn-size-sm"
-                                      onclick="window.location.href='cart.html'">
+                                      onclick="addMultToCart(${product.pid});">
                                 Add To Cart
                               </button>
                             </div>
@@ -335,107 +320,106 @@
       </section>
       <!-- Product Area End -->
 
-
-
-      <!-- Countdown Product Area Start -->
-      <div class="limited-product-area mb--11pt5">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 mb-md--40 mb-sm--45">
-              <div class="limited-product__image">
-                <div class="limited-product__title">
-                  <h2>商品类型</h2>
-                </div>
-                <div class="limited-product__large-image">
-                  <div class="element-carousel main-slider" data-slick-options='{"slidesToShow": 1,"asNavFor": ".nav-slider"
+<%--限时特惠--%>
+      <c:forEach items="${recommedProduct}" var="product">
+        <c:if test="${product.recommend == 3}">
+          <!-- Countdown Product Area Start -->
+          <div class="limited-product-area mb--11pt5">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 mb-md--40 mb-sm--45">
+                  <div class="limited-product__image">
+                    <div class="limited-product__title">
+<%--                      侧方隐式水印--%>
+                      <h2></h2>
+                    </div>
+                    <div class="limited-product__large-image">
+                      <div class="element-carousel main-slider" data-slick-options='{"slidesToShow": 1,"asNavFor": ".nav-slider"
                                     }'>
-                    <div class="item">
-                      <figure>
-                        <img src="resources/img/products/product-11-321x450.png"
-                             alt="Countdown Product">
-                      </figure>
+                        <div class="item">
+                          <figure>
+                            <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                 alt="Countdown Product">
+                          </figure>
+                        </div>
+                        <div class="item">
+                          <figure>
+                            <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                 alt="Countdown Product">
+                          </figure>
+                        </div>
+                        <div class="item">
+                          <figure>
+                            <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                 alt="Countdown Product">
+                          </figure>
+                        </div>
+                      </div>
                     </div>
-                    <div class="item">
-                      <figure>
-                        <img src="resources/img/products/product-12-321x450.png"
-                             alt="Countdown Product">
-                      </figure>
-                    </div>
-                    <div class="item">
-                      <figure>
-                        <img src="resources/img/products/product-13-321x450.png"
-                             alt="Countdown Product">
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-                <div class="limited-product__nav-image">
-                  <div class="element-carousel nav-slider" data-slick-options='{
+                    <div class="limited-product__nav-image">
+                      <div class="element-carousel nav-slider" data-slick-options='{
                                         "spaceBetween": 25,
                                         "slidesToShow": 3,
                                         "vertical": true,
                                         "focusOnSelect": true,
                                         "asNavFor": ".main-slider"
                                     }'
-                       data-slick-responsive='[
+                           data-slick-responsive='[
                                         {"breakpoint": 576, "settings": { "vertical": false }}
                                     ]'
-                  >
+                      >
 
 
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-5 offset-xl-1 col-lg-6">
-              <div class="limited-product__info">
-                <h2 class="limited-product__name">
-                  <a href="product-details.html">商品名称</a>
-                </h2>
-                <p class="limited-product__desc">商品描述</p>
-                <div class="d-flex align-items-center">
-                  <div class="limited-product__price">
-                    <span class="money">价格</span>
-                    <span class="sign">$</span>
-                  </div>
-                  <span class="limited-product__rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                </div>
-                <h3 class="limited-product__subtitle">限时特惠！！！</h3>
-                <div class="limited-product__countdown">
-                  <div class="countdown-wrap">
-                    <div class="countdown" data-countdown="2020/10/01" data-format="short">
-                      <div class="countdown__item">
-                        <span class="countdown__time daysLeft"></span>
-                        <span class="countdown__text daysText"></span>
-                      </div>
-                      <div class="countdown__item">
-                        <span class="countdown__time hoursLeft"></span>
-                        <span class="countdown__text hoursText"></span>
-                      </div>
-                      <div class="countdown__item">
-                        <span class="countdown__time minsLeft"></span>
-                        <span class="countdown__text minsText"></span>
-                      </div>
-                      <div class="countdown__item">
-                        <span class="countdown__time secsLeft"></span>
-                        <span class="countdown__text secsText"></span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <a href="shop.html" class="btn-link">立即购买</a>
+                <div class="col-xl-5 offset-xl-1 col-lg-6">
+                  <div class="limited-product__info">
+                    <h2 class="limited-product__name">
+                      <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}">${product.pname}</a>
+                    </h2>
+                    <p class="limited-product__desc">${product.pinfo}</p>
+                    <div class="d-flex align-items-center">
+                      <div class="limited-product__price">
+                        <span class="money">${product.new_price}</span>
+                        <span class="sign">$</span>
+                      </div>
+                    </div>
+                    <h3 class="limited-product__subtitle">限时特惠！！！</h3>
+                    <div class="limited-product__countdown">
+                      <div class="countdown-wrap">
+                        <div class="countdown" data-countdown="${product.recomm_date3}" data-format="short">
+                          <div class="countdown__item">
+                            <span class="countdown__time daysLeft">11</span>
+                            <span class="countdown__text daysText">22</span>
+                          </div>
+                          <div class="countdown__item">
+                            <span class="countdown__time hoursLeft">33</span>
+                            <span class="countdown__text hoursText">44</span>
+                          </div>
+                          <div class="countdown__item">
+                            <span class="countdown__time minsLeft"></span>
+                            <span class="countdown__text minsText"></span>
+                          </div>
+                          <div class="countdown__item">
+                            <span class="countdown__time secsLeft"></span>
+                            <span class="countdown__text secsText"></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}" class="homeImage" style="font-size: 24px">立即购买</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <!-- Countdown Product Area End -->
+          <!-- Countdown Product Area End -->
+        </c:if>
+      </c:forEach>
+
+
 
       <!-- Product Area Start  热门商品-->
       <section class="product-area mb--50 mb-xl--40 mb-lg--25 mb-md--30 mb-sm--20 mb-xs--15">
@@ -457,17 +441,17 @@
                       <figure class="product__image--holder">
                         <img src="${product2.img_t1}" alt="Product">
                       </figure>
-                      <a href="product-details.html" class="product-overlay"></a>
+                      <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}" class="product-overlay"></a>
                       <div class="product__action">
                         <a data-toggle="modal" data-target="#productModal2${tag2.index}" class="action-btn">
                           <i class="fa fa-eye"></i>
                           <span class="sr-only">Quick View</span>
                         </a>
-                        <a href="wishlist.html" class="action-btn">
+                        <a href="javascript:void(0)" onclick="addToWishlist(${product2.pid})" class="action-btn">
                           <i class="fa fa-heart-o"></i>
                           <span class="sr-only">Add to wishlist</span>
                         </a>
-                        <a href="cart.html" class="action-btn">
+                        <a href="javascript:void(0)" onclick="addOneToCart(${product2.pid})" class="action-btn">
                           <i class="fa fa-shopping-cart"></i>
                           <span class="sr-only">Add To Cart</span>
                         </a>
@@ -584,7 +568,7 @@
                                 </div>
                               </div>
                               <button type="button" class="btn btn-shape-square btn-size-sm"
-                                      onclick="window.location.href='cart.html'">
+                                      onclick="addMultToCart2(${product2.pid});">
                                 Add To Cart
                               </button>
                             </div>
@@ -607,58 +591,6 @@
 
 
             </c:forEach>
-
-            <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
-                <div class="payne-product">
-                    <div class="product__inner">
-                        <div class="product__image">
-                            <figure class="product__image--holder">
-                                <img src="assets/img/products/product-04-270x300.jpg" alt="Product">
-                            </figure>
-                            <a href="product-details.html" class="product-overlay"></a>
-                            <div class="product__action">
-                                <a data-toggle="modal" data-target="#productModal" class="action-btn">
-                                    <i class="fa fa-eye"></i>
-                                    <span class="sr-only">Quick View</span>
-                                </a>
-                                <a href="wishlist.html" class="action-btn">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span class="sr-only">Add to wishlist</span>
-                                </a>
-                                <a href="wishlist.html" class="action-btn">
-                                    <i class="fa fa-repeat"></i>
-                                    <span class="sr-only">Add To Compare</span>
-                                </a>
-                                <a href="cart.html" class="action-btn">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span class="sr-only">Add To Cart</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product__info">
-                            <div class="product__info--left">
-                                <h3 class="product__title">
-                                    <a href="product-details.html">Lexbaro Begadi</a>
-                                </h3>
-                                <div class="product__price">
-                                    <span class="money">132.00</span>
-                                    <span class="sign">$</span>
-                                </div>
-                            </div>
-                            <div class="product__info--right">
-                                <span class="product__rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
 
 
           </div>
@@ -769,15 +701,87 @@
 
   <%@ include file="foot1.jsp"%>
   </div>>
+  <%--添加成功提示--%>
+  <div class="ui page dimmer">
+    <div class="content">
+      <img src="${pageContext.request.contextPath}/resources/img/tips/addSuccess2.png" alt="添加成功" >
+    </div>
+  </div>
+
+  <div class="ui page dimmer wishlist">
+    <div class="content">
+      <img src="${pageContext.request.contextPath}/resources/img/tips/addwishlist.png" style="width: 250px;" alt="添加成功" >
+    </div>
+  </div>
+
   <!-- ************************* JS Files ************************* -->
 
   <!-- jQuery JS -->
   <script src="resources/js/vendor.js"></script>
-
+  <script src="${pageContext.request.contextPath}/resources/js/semantic.js"></script>
   <!-- Main JS -->
   <script src="resources/js/main.js"></script>
   </body>
 <script>
+  function addOneToCart(pid) {
+    $.ajax({
+      type: "get",
+      url:"${pageContext.request.contextPath}/carts/addToCart?pid="+pid+"&buyNum="+1,
+      success: function (data) {
+        if (data.success) {
+          $('.page.dimmer:first')
+                  .dimmer('toggle')
+          ;
+        }
+      },
+      dataType:"json"
+    })
+  }
+  function addMultToCart(pid) {
+    var buyNum = $("#qty").val();
+    $.ajax({
+      type:"get",
+      url:"${pageContext.request.contextPath}/carts/addToCart?pid="+pid+"&buyNum="+buyNum,
+      success:function (data) {
+        if(data.success){
+          alert("添加成功")
+        }
+      },
+      dataType: "json"
+    })
+  }
+  function addMultToCart2(pid) {
+    var buyNum = $("#qty").val();
+    $.ajax({
+      type:"get",
+      url:"${pageContext.request.contextPath}/carts/addToCart?pid="+pid+"&buyNum="+buyNum,
+      success:function (data) {
+        if(data.success){
+          alert("添加成功")
+        }
+      },
+      dataType: "json"
+    })
+  }
+  function addToWishlist(pid) {
+    $.ajax({
+      type: "get",
+      url:"${pageContext.request.contextPath}/user/addWishlist?pid="+pid,
+      success: function (data) {
+        if(data.success==1){
+          alert("收藏成功~")
+        }
+        if(data.success==2){
+          alert("这个商品已经存在心愿单了哟~")
+        }
+        if(data.success==0){
+          alert("您还没有登陆哟，请先登陆后在收藏吧~")
+        }
+
+      },
+      dataType: "json"
+    })
+  }
 
 </script>
 </html>

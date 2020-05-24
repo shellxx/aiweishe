@@ -222,7 +222,7 @@
                 success: function (data) {
                     if (data.success) {
                         alert("登陆成功！");
-                        location.href = "index.jsp";
+                        location.href = "default.jsp";
                     }else{
                         alert("用户名或密码错误！");
                     }

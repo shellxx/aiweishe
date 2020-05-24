@@ -129,7 +129,7 @@
                                                           </div> -->
                                     </div>
                                     <div class="col-sm-6 text-sm-right">
-                                        <button type="submit" class="cart-form__btn">清空购物车</button>
+                                        <button type="button" class="cart-form__btn" onclick="clearAll();">清空购物车</button>
                                         <!-- <button type="submit" class="cart-form__btn">更新购物车</button> -->
                                     </div>
                                 </div>
@@ -205,6 +205,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </body>
 <script>
-
+function clearAll() {
+    window.location.href="${pageContext.request.contextPath}/carts/clearCar"
+}
 </script>
 </html>

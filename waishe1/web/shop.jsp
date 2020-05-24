@@ -105,13 +105,13 @@
                                                     <figure class="product__image--holder">
                                                         <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
                                                     </figure>
-                                                    <a href="product-details.html" class="product__overlay"></a>
+                                                    <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}" class="product__overlay"></a>
                                                     <div class="product__action">
                                                         <a data-toggle="modal" data-target="#productModal${tag.index}" class="action-btn">
                                                             <i class="fa fa-eye"></i>
                                                             <span class="sr-only">Quick View</span>
                                                         </a>
-                                                        <a href="wishlist.html" class="action-btn">
+                                                        <a href="javascript:void(0)" onclick="addToWishlist(${product.pid})" class="action-btn">
                                                             <i class="fa fa-heart-o"></i>
                                                             <span class="sr-only">Add to wishlist</span>
                                                         </a>
@@ -266,7 +266,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <button type="button" class="btn btn-shape-square btn-size-sm"
-                                                                            onclick="window.location.href='cart.html'">
+                                                                            onclick="addMultToCart(${product.pid})">
                                                                         Add To Cart
                                                                     </button>
                                                                 </div>
@@ -425,7 +425,7 @@
 
     <%@ include file="foot1.jsp"%>
 </div>>
-
+<%--添加成功提示--%>
 <div class="ui page dimmer">
     <div class="content">
         <img src="${pageContext.request.contextPath}/resources/img/tips/addSuccess2.png" alt="添加成功" >
@@ -452,6 +452,42 @@
                 }
             },
             dataType:"json"
+        })
+    }
+
+    function addMultToCart(pid) {
+        var buyNum = $("#qty").val();
+        $.ajax({
+            type:"get",
+            url:"${pageContext.request.contextPath}/carts/addToCart?pid="+pid+"&buyNum="+buyNum,
+            success:function (data) {
+                if(data.success){
+                    // $('.page.dimmer:first').dimmer('toggle')
+                    // ;
+                    alert("添加成功")
+                }
+
+            },
+            dataType: "json"
+        })
+    }
+    function addToWishlist(pid) {
+        $.ajax({
+            type: "get",
+            url:"${pageContext.request.contextPath}/user/addWishlist?pid="+pid,
+            success: function (data) {
+                if(data.success==1){
+                    alert("收藏成功~")
+                }
+                if(data.success==2){
+                    alert("这个商品已经存在心愿单了哟~")
+                }
+                if(data.success==0){
+                    alert("您还没有登陆哟，请先登陆后在收藏吧~")
+                }
+
+            },
+            dataType: "json"
         })
     }
 </script>

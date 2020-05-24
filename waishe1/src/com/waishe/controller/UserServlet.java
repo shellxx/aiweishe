@@ -1,19 +1,17 @@
 package com.waishe.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.waishe.domain.Product;
 import com.waishe.domain.User;
 import com.waishe.service.Impl.UserServiceImpl;
 import com.waishe.service.UserService;
 import com.waishe.utils.UUIDUtils;
-import org.apache.commons.beanutils.BeanUtils;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 @WebServlet(name = "UserServlet",urlPatterns = {"/user/*"})
 public class UserServlet extends BaseServlet {
@@ -70,4 +68,73 @@ public class UserServlet extends BaseServlet {
             response.getWriter().write(jsonObject.toString());
         }
     }
+    //注销
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().invalidate();
+        response.sendRedirect(request.getContextPath()+"/");
+
+    }
+    //用户的心愿单
+    public void wishlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取user
+        User user = (User) request.getSession().getAttribute("user");
+        //
+        if(user == null){
+            response.sendRedirect(request.getContextPath()+"/login.jsp");
+        }
+        //查询该用户的心愿单
+        UserService userService = new UserServiceImpl();
+        List<Product> wishList = userService.findWishlist(user.getUid());
+        //设置wishlist
+        request.getSession().setAttribute("wishlists",wishList);
+        response.sendRedirect(request.getContextPath()+"/wishlist.jsp");
+
+    }
+    //添加心愿单
+    public void addWishlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取user
+        User user = (User) request.getSession().getAttribute("user");
+        String pid = request.getParameter("pid");
+
+        JSONObject jsonObject = new JSONObject();
+        if(user!=null){
+            UserService userService = new UserServiceImpl();
+            Product product = userService.findWishlistByone(user.getUid(), pid);
+            if(product==null){
+                userService.addWishlist(user.getUid(),pid);
+                jsonObject.put("success", 1);
+            }else {
+                jsonObject.put("success", 2);
+            }
+            //查询该用户的心愿单
+            List<Product> wishList = userService.findWishlist(user.getUid());
+            //设置wishlist
+            request.getSession().setAttribute("wishlists",wishList);
+        }else {
+            jsonObject.put("success",0);
+        }
+
+
+
+
+        response.getWriter().write(jsonObject.toJSONString());
+
+    }
+    public void deleteWishlist(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取user
+        User user = (User) request.getSession().getAttribute("user");
+        String pid = request.getParameter("pid");
+
+        //调用删除的逻辑
+        UserService userService = new UserServiceImpl();
+        int i = userService.deleteWishlist(user.getUid(), pid);
+
+        //查询该用户的心愿单
+        List<Product> wishList = userService.findWishlist(user.getUid());
+        //设置wishlist
+        request.getSession().setAttribute("wishlists",wishList);
+
+        response.sendRedirect(request.getContextPath()+"/wishlist.jsp");
+    }
+
 }

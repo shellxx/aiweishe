@@ -19,6 +19,7 @@ public class Product implements Serializable {
     private Double discount;//优惠折扣
     private Integer recommend;//是否推荐
     private String recommendInfo;//推荐语
+    private Date recomm_date3;//限时特惠日期
     private String img_recommed;//推荐图片
     private String brand;
 
@@ -159,6 +160,14 @@ public class Product implements Serializable {
 
     public void setImg_recommed(String img_recommed) {
         this.img_recommed = img_recommed;
+    }
+
+    public Date getRecomm_date3() {
+        return recomm_date3;
+    }
+
+    public void setRecomm_date3(Date recomm_date3) {
+        this.recomm_date3 = recomm_date3;
     }
 
     @Override
