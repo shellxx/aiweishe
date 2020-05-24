@@ -1,45 +1,34 @@
 package com.waishe.domain;
 
-import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Cart implements Serializable {
-    private Integer cart_id;
-    private String pid;
-    private Integer p_num;
+public class Cart {
 
-    public Cart() {
+    //该购物车中存储的n个购物项，
+    //键是商品的id，值是该商品的购物项
+    private Map<String,CartItem> cartItems = new HashMap<String,CartItem>();
+
+    //商品的总计
+    private double total;
+
+    public Map<String, CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public Integer getCart_id() {
-        return cart_id;
+    public void setCartItems(Map<String, CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
-    public void setCart_id(Integer cart_id) {
-        this.cart_id = cart_id;
+    public double getTotal() {
+        return total;
     }
 
-    public String getPid() {
-        return pid;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
 
-    public Integer getP_num() {
-        return p_num;
-    }
 
-    public void setP_num(Integer p_num) {
-        this.p_num = p_num;
-    }
 
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "cart_id=" + cart_id +
-                ", pid='" + pid + '\'' +
-                ", p_num=" + p_num +
-                '}';
-    }
 }

@@ -7,9 +7,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class C3p0Utils {
+    private static DataSource dataSource = new ComboPooledDataSource();
     //获取dataSource
     public static DataSource getDataSource(){
-        return new ComboPooledDataSource();
+        return dataSource;
     }
     //获取链接
     public static Connection getConnection(){

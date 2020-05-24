@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -21,7 +22,23 @@
 
     <!-- style css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
+
   </head>
+  <style>
+    .homeImage:hover {
+      border-bottom: 1px solid #5c5958;
+      border-width: 2px;
+      text-decoration: none;
+    }
+    .homeImage:focus{
+      text-decoration:underline;
+      border-color:transparent;
+    }
+    .homeImage{
+      border-bottom: 1px solid #222;
+      border-width: 2px;
+    }
+  </style>
   <body>
 
   <!-- Preloader Start -->
@@ -48,77 +65,49 @@
                     "slidesToShow": 1,
                     "dots": true
                 }'>
-        <div class="item">
-          <div class="single-slide d-flex align-items-center bg-image"
-               data-bg-image="resources/img/slider/slider-bg-01.jpg">
-            <div class="container">
-              <div class="row align-items-center no-gutters w-100">
-                <div class="col-lg-6 col-md-8">
-                  <div class="slider-content">
-                    <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
-                      <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
-                          data-duration=".3s" data-delay=".3s">ROG STRIX FUSION WIRELESS</h3>
-                      <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
-                          data-duration=".3s" data-delay=".3s">无线游戏耳机</h1>
-                      <p class="font-weight-light" data-animation="fadeInUp"
-                         data-duration=".3s" data-delay=".3s">ROG STRIX FUSION WIRELESS是
-                        FUSION家族里面唯一一款采用2.4G无线方案的游戏耳机，凭借稳定、出色的无线连接，
-                        可以让你放心地使用无线模式进行游戏体验，真正抛开线材束缚。</p>
+<%--        轮播推荐--%>
+        <c:forEach items="${recommedProduct}" var="product">
+          <c:if test="${product.recommend == 1}">
+            <div class="item">
+              <div class="single-slide d-flex align-items-center bg-image"
+                   data-bg-image="resources/img/slider/slider-bg-01.jpg">
+                <div class="container">
+                  <div class="row align-items-center no-gutters w-100">
+                    <div class="col-lg-6 col-md-8">
+                      <div class="slider-content">
+                        <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
+                          <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
+                              data-duration=".3s" data-delay=".3s">${product.brand}</h3>
+                          <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
+                              data-duration=".3s" data-delay=".3s">${product.pname}</h1>
+                          <p class="font-weight-light" data-animation="fadeInUp"
+                             data-duration=".3s" data-delay=".3s">${product.recommendInfo}</p>
+                        </div>
+                        <div class="slider-content__btn">
+                            <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}" class="homeImage"
+                               data-animation="fadeInUp" data-duration=".3s" data-delay=".6s"
+                            style="font-size: 24px">Shop Now</a>
+                        </div>
+                      </div>
                     </div>
-                    <div class="slider-content__btn">
-                      <a href="shop.html" class="btn-link" data-animation="fadeInUp"
-                         data-duration=".3s" data-delay=".6s">Shop Now</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4 offset-lg-2 col-md-4">
-                  <figure class="slider-image d-none d-md-block">
-                    <div class="bg-cover"><img src="resources/img/slider/FUSION.png" alt="Slider Image"></div>
-                  </figure>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="single-slide d-flex align-items-center bg-image"
-               data-bg-image="resources/img/slider/slider-bg-01.jpg">
-            <div class="container">
-              <div class="row align-items-center no-gutters w-100">
-                <div class="col-lg-6 col-md-8">
-                  <div class="slider-content py-0">
-                    <div class="slider-content__text mb--95 md-lg--80 mb-md--40 mb-sm--15">
-                      <h3 class="text-uppercase font-weight-light" data-animation="fadeInUp"
-                          data-duration=".3s" data-delay=".3s">  ZOMO PLUS</h3>
-                      <h1 class="heading__primary mb--40 mb-md--20" data-animation="fadeInUp"
-                          data-duration=".3s" data-delay=".3s">「猫爪」键帽</h1>
-                      <p class="font-weight-light" data-animation="fadeInUp"
-                         data-duration=".3s" data-delay=".3s">价格更亲民的「猫爪」键帽现已登场。
-                        键帽猫掌形底座设计，ABS材质打造，虽然质感比不上金属版，但其整体观感基本与之相当。
-                        最重要的是肉垫部分材质完全相同，手感一致。这也就是「猫爪」键帽精髓所在。
-                        底座与肉垫部分结合采用了超声波粘合技术将三层复合材料组合而成，使得肉垫更为稳固。</p>
-                    </div>
-                    <div class="slider-content__btn">
-                      <a href="shop.html" class="btn-link" data-animation="fadeInUp"
-                         data-duration=".3s" data-delay=".6s">Shop Now</a>
+                    <div class="col-lg-4 offset-lg-2 col-md-4">
+                      <figure class="slider-image d-none d-md-block">
+                        <div class="bg-cover"><img src="${product.img_recommed}" alt="Slider Image"></div>
+                      </figure>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 offset-lg-2 col-md-4">
-                  <figure class="slider-image d-none d-md-block">
-                    <div class="bg-cover"><img src="resources/img/slider/ZOMO.png" alt="Slider Image"></div>
-                  </figure>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </c:if>
+        </c:forEach>
+
       </div>
     </section>
     <!-- Slider area End -->
 
 
-      <!-- Featured Product Area Start -->
+      <!-- Featured Product Area Start 特色产品推荐区-->
       <section class="featured-product-area mb--10pt8">
         <div class="container">
           <div class="row">
@@ -127,42 +116,47 @@
             </div>
           </div>
           <div class="row align-items-center">
-            <div class="col-md-6 mb-sm--50">
-              <div class="featured-product">
-                <div class="featured-product__inner info-center">
-                  <figure class="featured-product__image">
-                    <img src="resources/img/products/product-01-500x466.jpg" alt="Featured Product">
-                  </figure>
-                  <div class="featured-product__info wow pbounceInLeft" data-wow-delay=".3s" data-wow-duration="1s">
-                    <div class="featured-product__info-inner">
-                      <h4 class="featured-product__text">Amazing Product!</h4>
-                      <h2 class="featured-product__name">Bisco Bag</h2>
+            <c:forEach items="${recommedProduct}" var="product">
+              <c:if test="${product.recommend == 2}">
+                <div class="col-md-6 ">
+                  <div class="featured-product">
+                    <div class="featured-product__inner info-center">
+                      <figure class="featured-product__image">
+                        <img src="${product.img_recommed}" alt="Featured Product">
+                      </figure>
+                      <div class="featured-product__info wow pbounceInLeft" data-wow-delay=".3s" data-wow-duration="1s">
+                        <div class="featured-product__info-inner">
+                          <h4 class="featured-product__text"><STRONG>${product.recommendInfo}</STRONG></h4>
+                          <h3 class="featured-product__name">${product.pname}</h3>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="featured-product">
-                <div class="featured-product__inner info-left-bottom">
-                  <figure class="featured-product__image">
-                    <img src="resources/img/products/product-02-500x575.jpg" alt="Featured Product">
-                  </figure>
-                  <div class="featured-product__info wow pbounceInDown" data-wow-duration="1s">
-                    <div class="featured-product__info-inner rotated-info">
-                      <h4 class="featured-product__text">Special Offer <strong>39%</strong> Off</h4>
-                      <h2 class="featured-product__name">Feedo Bag</h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </c:if>
+            </c:forEach>
+
+<%--            <div class="col-md-6">--%>
+<%--              <div class="featured-product">--%>
+<%--                <div class="featured-product__inner info-left-bottom">--%>
+<%--                  <figure class="featured-product__image">--%>
+<%--                    <img src="resources/img/products/product-02-500x575.jpg" alt="Featured Product">--%>
+<%--                  </figure>--%>
+<%--                  <div class="featured-product__info wow pbounceInDown" data-wow-duration="1s">--%>
+<%--                    <div class="featured-product__info-inner rotated-info">--%>
+<%--                      <h4 class="featured-product__text">续航持久 <strong>39%</strong> Off</h4>--%>
+<%--                      <h2 class="featured-product__name">鼠标鼠标</h2>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
           </div>
         </div>
       </section>
       <!-- Featured Product Area End -->
 
-      <!-- Product Area Start -->
+      <!-- Product Area Start 新品上市-->
       <section class="product-area mb--50 mb-xl--40 mb-lg--25 mb-md--30 mb-sm--20 mb-xs--15">
         <div class="container">
           <div class="row mb--42">
@@ -173,107 +167,166 @@
             </div>
           </div>
           <div class="row">
-            <!-- 商品框 -->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
-              <div class="payne-product">
-                <div class="product__inner">
-                  <div class="product__image">
-                    <figure class="product__image--holder">
-                      <img src="resources/img/products/product-03-270x300.jpg" alt="Product">
-                    </figure>
-                    <a href="product-details.html" class="product-overlay"></a>
-                    <div class="product__action">
-                      <a data-toggle="modal" data-target="#productModal" class="action-btn">
-                        <i class="fa fa-eye"></i>
-                        <span class="sr-only">Quick View</span>
-                      </a>
-                      <a href="wishlist.html" class="action-btn">
-                        <i class="fa fa-heart-o"></i>
-                        <span class="sr-only">Add to wishlist</span>
-                      </a>
-                      <a href="wishlist.html" class="action-btn">
-                        <i class="fa fa-repeat"></i>
-                        <span class="sr-only">Add To Compare</span>
-                      </a>
-                      <a href="cart.html" class="action-btn">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span class="sr-only">Add To Cart</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="product__info">
-                    <div class="product__info--left">
-                      <h3 class="product__title">
-                        <a href="product-details.html">Lexbaro Begadi</a>
-                      </h3>
-                      <div class="product__price">
-                        <span class="money">132.00</span>
-                        <span class="sign">$</span>
+            <c:forEach items="${newProduct}" var="product" varStatus="tag">
+              <!-- 商品框 -->
+              <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
+                <div class="payne-product">
+                  <div class="product__inner">
+<%--                    产品图片--%>
+                    <div class="product__image">
+                      <figure class="product__image--holder">
+                        <img src="${product.img_t1}" alt="Product">
+                      </figure>
+                      <a href="product-details.html" class="product-overlay"></a>
+                      <div class="product__action">
+                        <a data-toggle="modal" data-target="#productModal${tag.index}" class="action-btn">
+                          <i class="fa fa-eye"></i>
+                          <span class="sr-only">Quick View</span>
+                        </a>
+                        <a href="wishlist.html" class="action-btn">
+                          <i class="fa fa-heart-o"></i>
+                          <span class="sr-only">Add to wishlist</span>
+                        </a>
+                        <a href="cart.html" class="action-btn">
+                          <i class="fa fa-shopping-cart"></i>
+                          <span class="sr-only">Add To Cart</span>
+                        </a>
                       </div>
                     </div>
-                    <div class="product__info--right">
-                                            <span class="product__rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
+<%--                    产品信息--%>
+                    <div class="product__info">
+                      <div class="product__info--left" style="width: 275px">
+                        <h3 class="product__title">
+                          <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}">${product.pname}</a>
+                        </h3>
+                        <div class="product__price">
+                          <c:if test="${product.new_price != product.old_price }">
+                            <span class="money" style="text-decoration: line-through;color: lightgray;font-size: small"><em>${product.old_price}</em><span class="sign">$</span></span>
+                          </c:if>
+                          <span class="money">${product.new_price}</span>
+                          <span class="sign">$</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
-                <div class="payne-product">
-                    <div class="product__inner">
-                        <div class="product__image">
-                            <figure class="product__image--holder">
-                                <img src="resources/img/products/product-04-270x300.jpg" alt="Product">
-                            </figure>
-                            <a href="product-details.html" class="product-overlay"></a>
-                            <div class="product__action">
-                                <a data-toggle="modal" data-target="#productModal" class="action-btn">
-                                    <i class="fa fa-eye"></i>
-                                    <span class="sr-only">Quick View</span>
-                                </a>
-                                <a href="wishlist.html" class="action-btn">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span class="sr-only">Add to wishlist</span>
-                                </a>
-                                <a href="wishlist.html" class="action-btn">
-                                    <i class="fa fa-repeat"></i>
-                                    <span class="sr-only">Add To Compare</span>
-                                </a>
-                                <a href="cart.html" class="action-btn">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    <span class="sr-only">Add To Cart</span>
-                                </a>
+              <!-- Qicuk View Modal Start 模态框 -->
+              <div class="modal fade product-modal" id="productModal${tag.index}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="flaticon-cross"></i></span>
+                      </button>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="element-carousel slick-vertical-center" data-slick-options='{
+                                    "slidesToShow": 1,
+                                    "slidesToScroll": 1,
+                                    "arrows": true,
+                                    "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-double-left" },
+                                    "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-double-right" }
+                                }'>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
                             </div>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
+                            </div>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
+                            </div>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
+                            </div>
+                          </div>
                         </div>
-                        <div class="product__info">
-                            <div class="product__info--left">
-                                <h3 class="product__title">
-                                    <a href="product-details.html">Lexbaro Begadi</a>
-                                </h3>
-                                <div class="product__price">
-                                    <span class="money">132.00</span>
-                                    <span class="sign">$</span>
+                        <div class="col-lg-6">
+                          <div class="modal-box product-summary">
+                            <!-- 这个div留空白-->
+                            <div class="product-rating d-flex mb--20">
+                              <div>
+                                <span>&nbsp;</span>
+                              </div>
+                            </div>
+                            <h3 class="product-title mb--20">${product.pname}</h3>
+                            <p class="product-short-description mb--20">${product.pinfo}</p>
+                            <!-- 这个div留空白-->
+                            <div class="product-rating d-flex mb--20">
+                              <div>
+                                <span>&nbsp;</span>
+                              </div>
+                            </div>
+                            <div class="product-price-wrapper mb--25">
+                              <span class="money" style="text-decoration: line-through;color: lightgray;font-size: small"><em>${product.old_price}$  </em></span>
+                              <!-- 价格区间中间线-->
+                                <%--                                                                    <span class="price-separator">-</span>--%>
+                              <span class="money"> ${product.new_price}$</span>
+                            </div>
+                            <form action="#" class="variation-form mb--20">
+                              <div class="product-size-variations d-flex align-items-center mb--15">
+                                <p class="variation-label">Size:</p>
+                                  <%--size--%>
+                                <div class="product-size-variation variation-wrapper">
+                                  <c:forTokens items="${product.psize}" delims="-" var="size">
+                                    <div class="variation">
+                                      <a class="product-size-variation-btn selected" data-toggle="tooltip"
+                                         data-placement="top" title="${product.psize}">
+                                        <span class="product-size-variation-label">${size}</span>
+                                      </a>
+                                    </div>
+                                  </c:forTokens>
                                 </div>
+                              </div>
+
+
+                                <%--                                                                    <a href="" class="reset_variations">Clear</a>--%>
+                            </form>
+                            <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30">
+                              <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
+                                <label class="quantity-label" for="qty">Quantity:</label>
+                                <div class="quantity">
+                                  <input type="number" class="quantity-input" name="qty" id="qty" value="1"
+                                         min="1">
+                                </div>
+                              </div>
+                              <button type="button" class="btn btn-shape-square btn-size-sm"
+                                      onclick="window.location.href='cart.html'">
+                                Add To Cart
+                              </button>
                             </div>
-                            <div class="product__info--right">
-                                <span class="product__rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </span>
+                            <!-- 留为空白 -->
+                            <div class="product-footer-meta">
+                              <p><span>&nbsp;</span></p>
                             </div>
+                            <!-- 留为空白 -->
+                            <div class="product-footer-meta">
+                              <p><span>&nbsp;</span></p>
+                            </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div> -->
+              </div>
+              <!-- Qicuk View Modal End -->
+            </c:forEach>
+
+
 
 
 
@@ -281,6 +334,8 @@
         </div>
       </section>
       <!-- Product Area End -->
+
+
 
       <!-- Countdown Product Area Start -->
       <div class="limited-product-area mb--11pt5">
@@ -394,56 +449,165 @@
           </div>
           <div class="row">
             <!-- 商品框 -->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
-              <div class="payne-product">
-                <div class="product__inner">
-                  <div class="product__image">
-                    <figure class="product__image--holder">
-                      <img src="assets/img/products/product-03-270x300.jpg" alt="Product">
-                    </figure>
-                    <a href="product-details.html" class="product-overlay"></a>
-                    <div class="product__action">
-                      <a data-toggle="modal" data-target="#productModal" class="action-btn">
-                        <i class="fa fa-eye"></i>
-                        <span class="sr-only">Quick View</span>
-                      </a>
-                      <a href="wishlist.html" class="action-btn">
-                        <i class="fa fa-heart-o"></i>
-                        <span class="sr-only">Add to wishlist</span>
-                      </a>
-                      <a href="wishlist.html" class="action-btn">
-                        <i class="fa fa-repeat"></i>
-                        <span class="sr-only">Add To Compare</span>
-                      </a>
-                      <a href="cart.html" class="action-btn">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span class="sr-only">Add To Cart</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="product__info">
-                    <div class="product__info--left">
-                      <h3 class="product__title">
-                        <a href="product-details.html">Lexbaro Begadi</a>
-                      </h3>
-                      <div class="product__price">
-                        <span class="money">132.00</span>
-                        <span class="sign">$</span>
+            <c:forEach items="${hotProduct}" var="product2" varStatus="tag2">
+              <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
+                <div class="payne-product">
+                  <div class="product__inner">
+                    <div class="product__image">
+                      <figure class="product__image--holder">
+                        <img src="${product2.img_t1}" alt="Product">
+                      </figure>
+                      <a href="product-details.html" class="product-overlay"></a>
+                      <div class="product__action">
+                        <a data-toggle="modal" data-target="#productModal2${tag2.index}" class="action-btn">
+                          <i class="fa fa-eye"></i>
+                          <span class="sr-only">Quick View</span>
+                        </a>
+                        <a href="wishlist.html" class="action-btn">
+                          <i class="fa fa-heart-o"></i>
+                          <span class="sr-only">Add to wishlist</span>
+                        </a>
+                        <a href="cart.html" class="action-btn">
+                          <i class="fa fa-shopping-cart"></i>
+                          <span class="sr-only">Add To Cart</span>
+                        </a>
                       </div>
                     </div>
-                    <div class="product__info--right">
-                                            <span class="product__rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
+<%--                    商品信息--%>
+                    <div class="product__info">
+                      <div class="product__info--left">
+                        <h3 class="product__title">
+                          <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product2.pid}">${product2.pname}</a>
+                        </h3>
+                        <div class="product__price">
+                          <c:if test="${product2.new_price != product2.old_price }">
+                            <span class="money" style="text-decoration: line-through;color: lightgray;font-size: small"><em>${product2.old_price}</em><span class="sign">$</span></span>
+                          </c:if>
+                          <span class="money">${product2.new_price}</span>
+                          <span class="sign">$</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <!-- Qicuk View Modal Start 模态框 -->
+              <div class="modal fade product-modal" id="productModal2${tag2.index}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="flaticon-cross"></i></span>
+                      </button>
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="element-carousel slick-vertical-center" data-slick-options='{
+                                    "slidesToShow": 1,
+                                    "slidesToScroll": 1,
+                                    "arrows": true,
+                                    "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "fa fa-angle-double-left" },
+                                    "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "fa fa-angle-double-right" }
+                                }'>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
+                            </div>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
+                            </div>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
+                            </div>
+                            <div class="item">
+                              <figure class="product-gallery__image">
+                                <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                <span class="product-badge sale">Sale</span>
+                              </figure>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="modal-box product-summary">
+                            <!-- 这个div留空白-->
+                            <div class="product-rating d-flex mb--20">
+                              <div>
+                                <span>&nbsp;</span>
+                              </div>
+                            </div>
+                            <h3 class="product-title mb--20">${product2.pname}</h3>
+                            <p class="product-short-description mb--20">${product2.pinfo}</p>
+                            <!-- 这个div留空白-->
+                            <div class="product-rating d-flex mb--20">
+                              <div>
+                                <span>&nbsp;</span>
+                              </div>
+                            </div>
+                            <div class="product-price-wrapper mb--25">
+                              <span class="money" style="text-decoration: line-through;color: lightgray;font-size: small"><em>${product2.old_price}$  </em></span>
+                              <!-- 价格区间中间线-->
+                                <%--                                                                    <span class="price-separator">-</span>--%>
+                              <span class="money"> ${product2.new_price}$</span>
+                            </div>
+                            <form action="#" class="variation-form mb--20">
+                              <div class="product-size-variations d-flex align-items-center mb--15">
+                                <p class="variation-label">Size:</p>
+                                  <%--size--%>
+                                <div class="product-size-variation variation-wrapper">
+                                  <c:forTokens items="${product2.psize}" delims="-" var="size">
+                                    <div class="variation">
+                                      <a class="product-size-variation-btn selected" data-toggle="tooltip"
+                                         data-placement="top" title="${product2.psize}">
+                                        <span class="product-size-variation-label">${size}</span>
+                                      </a>
+                                    </div>
+                                  </c:forTokens>
+                                </div>
+                              </div>
+
+
+                                <%--                                                                    <a href="" class="reset_variations">Clear</a>--%>
+                            </form>
+                            <div class="product-action d-flex flex-sm-row align-items-sm-center flex-column align-items-start mb--30">
+                              <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
+                                <label class="quantity-label" for="qty">Quantity:</label>
+                                <div class="quantity">
+                                  <input type="number" class="quantity-input" name="qty" id="qty2" value="1"
+                                         min="1">
+                                </div>
+                              </div>
+                              <button type="button" class="btn btn-shape-square btn-size-sm"
+                                      onclick="window.location.href='cart.html'">
+                                Add To Cart
+                              </button>
+                            </div>
+                            <!-- 留为空白 -->
+                            <div class="product-footer-meta">
+                              <p><span>&nbsp;</span></p>
+                            </div>
+                            <!-- 留为空白 -->
+                            <div class="product-footer-meta">
+                              <p><span>&nbsp;</span></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Qicuk View Modal End -->
+
+
+            </c:forEach>
+
             <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
                 <div class="payne-product">
                     <div class="product__inner">
@@ -502,7 +666,7 @@
       </section>
       <!-- Product Area End -->
 
-      <!-- Banner Area Start -->
+      <!-- Banner Area Start 底部横幅区，折扣推荐-->
       <section class="banner-area mb--11pt5">
         <div class="container">
           <div class="row">
@@ -514,16 +678,17 @@
             <div class="col-lg-6 mb-lg--50">
               <div class="banner">
                 <div class="banner__inner">
+<%--                  背景图片白板--%>
                   <div class="banner__info bg-image"
                        data-bg-image="resources/img/banner/banner-bg-01.jpg">
                     <div class="banner__info-inner">
-                      <h2 class="banner__title">LUXURY BACKPACK</h2>
-                      <a href="shop.html" class="banner__btn">Shop Now</a>
-                      <p class="banner__text">GET EXTRA DISCOUNT 26% OFF</p>
+                      <h2 class="banner__title">${discountProduct[0].pname}</h2>
+                      <a href="${pageContext.request.contextPath}/product/findProduct?pid=${discountProduct[0].pid}" class="banner__btn">Shop Now</a>
+                      <p class="banner__text">现在购买享受<em>  ${discountProduct[0].discount*100}%  </em>的折扣</p>
                     </div>
                   </div>
                   <figure class="banner__image">
-                    <img src="resources/img/banner/banner-01.jpg" alt="Banner" class="w-100">
+                    <img src="${discountProduct[0].img_t1}" alt="${discountProduct[0].pname}" class="w-100">
                   </figure>
                 </div>
               </div>
@@ -534,13 +699,13 @@
                   <div class="banner__info bg-image"
                        data-bg-image="resources/img/banner/banner-bg-01.jpg">
                     <div class="banner__info-inner">
-                      <h2 class="banner__title">SUPERIOR BACKPACK</h2>
-                      <a href="shop.html" class="banner__btn">Shop Now</a>
-                      <p class="banner__text">GET EXTRA DISCOUNT 26% OFF</p>
+                      <h2 class="banner__title">${discountProduct[1].pname}</h2>
+                      <a href="${pageContext.request.contextPath}/product/findProduct?pid=${discountProduct[1].pid}" class="banner__btn">Shop Now</a>
+                      <p class="banner__text">现在购买享受<em>  ${discountProduct[1].discount*100}%  </em>的折扣</p>
                     </div>
                   </div>
                   <figure class="banner__image">
-                    <img src="resources/img/banner/banner-02.jpg" alt="Banner" class="w-100">
+                    <img src="${discountProduct[1].img_t1}" alt="${discountProduct[0].pname}" class="w-100">
                   </figure>
                 </div>
               </div>
@@ -612,4 +777,7 @@
   <!-- Main JS -->
   <script src="resources/js/main.js"></script>
   </body>
+<script>
+
+</script>
 </html>

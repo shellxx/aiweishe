@@ -31,33 +31,33 @@
                         <nav class="main-navigation d-none d-lg-block">
                             <ul class="mainmenu">
                                 <li class="mainmenu__item menu-item-has-children position-relative">
-                                    <a href="index.html" class="mainmenu__link">Home</a>
+                                    <a href="${pageContext.request.contextPath}/" class="mainmenu__link">Home</a>
                                 </li>
                                 <%--商品列--%>
                                 <li class="mainmenu__item menu-item-has-children position-relative">
-                                    <a href="#" class="mainmenu__link">Shops</a>
+                                    <a href="${pageContext.request.contextPath}/product/findAllProduct" class="mainmenu__link">Shops</a>
                                     <div class="inner-menu">
                                         <ul class="sub-menu">
                                             <li>
-                                                <a href="my-account.html">鼠标</a>
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductBytid?tid=1001&currentPage=1">鼠标</a>
                                             </li>
                                             <li>
-                                                <a href="checkout.html">键盘</a>
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductBytid?tid=1002&currentPage=1">键盘</a>
                                             </li>
                                             <li>
-                                                <a href="cart.html">耳机</a>
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductBytid?tid=1003&currentPage=1">耳机</a>
                                             </li>
                                             <li>
-                                                <a href="compare.html">耳机</a>
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductBytid?tid=1004&currentPage=1">耳机</a>
                                             </li>
                                             <li>
-                                                <a href="order-tracking.html">键帽</a>
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductBytid?tid=1005&currentPage=1">键帽</a>
                                             </li>
                                             <li>
-                                                <a href="wishlist.html">鼠标垫</a>
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductBytid?tid=1006&currentPage=1">鼠标垫</a>
                                             </li>
                                             <li>
-                                                <a href="wishlist.html">其他配件</a>
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductBytid?tid=1007&currentPage=1">其他配件</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -67,22 +67,16 @@
                                     <div class="inner-menu">
                                         <ul class="sub-menu">
                                             <li>
-                                                <a href="my-account.html">My Account</a>
+                                                <a href="${pageContext.request.contextPath}/cart.jsp">Cart</a>
                                             </li>
                                             <li>
-                                                <a href="checkout.html">Checkout</a>
+                                                <a href="${pageContext.request.contextPath}/cart.jsp">Track Order</a>
                                             </li>
                                             <li>
-                                                <a href="cart.html">Cart</a>
+                                                <a href="${pageContext.request.contextPath}/cart.jsp">Wishlist</a>
                                             </li>
                                             <li>
-                                                <a href="compare.html">Compare</a>
-                                            </li>
-                                            <li>
-                                                <a href="order-tracking.html">Track Order</a>
-                                            </li>
-                                            <li>
-                                                <a href="wishlist.html">Wishlist</a>
+                                                <a href="${pageContext.request.contextPath}/cart.jsp">My Account</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -121,7 +115,7 @@
                                             <i class="flaticon-bag"></i>
                                         </span>
                                 <sup class="mini-cart-btn__count">
-                                    02
+                                    ${empty cart.cartItems.size()?0:cart.cartItems.size()}
                                 </sup>
                             </a>
                         </div>
