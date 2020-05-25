@@ -391,12 +391,12 @@
                       <div class="countdown-wrap">
                         <div class="countdown" data-countdown="${product.recomm_date3}" data-format="short">
                           <div class="countdown__item">
-                            <span class="countdown__time daysLeft">11</span>
-                            <span class="countdown__text daysText">22</span>
+                            <span class="countdown__time daysLeft"></span>
+                            <span class="countdown__text daysText"></span>
                           </div>
                           <div class="countdown__item">
-                            <span class="countdown__time hoursLeft">33</span>
-                            <span class="countdown__text hoursText">44</span>
+                            <span class="countdown__time hoursLeft"></span>
+                            <span class="countdown__text hoursText"></span>
                           </div>
                           <div class="countdown__item">
                             <span class="countdown__time minsLeft"></span>
