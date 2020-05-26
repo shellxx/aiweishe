@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,6 +96,7 @@ public class OrderServlet extends BaseServlet {
         String address = request.getParameter("billing_streetAddress");
         String name = request.getParameter("billing_fname");
         String telephone = request.getParameter("billing_phone");
+
         //获取orders
         Orders orders = (Orders) request.getSession().getAttribute("orders");
         orders.setAddress(address);
