@@ -3,8 +3,11 @@ package com.waishe.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.waishe.domain.PageBean;
 import com.waishe.domain.Product;
+import com.waishe.domain.Type;
 import com.waishe.service.Impl.ProductServiceImpl;
+import com.waishe.service.Impl.TypeServiceImpl;
 import com.waishe.service.ProductService;
+import com.waishe.service.TypeService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -80,9 +83,42 @@ public class ProductServlet extends BaseServlet {
         //查找此pid的商品
         ProductService productService = new ProductServiceImpl();
         Product product = productService.findByID(pid);
+        //底部热门
+        List<Product> hotProduct = productService.findHotProduct();
+        request.setAttribute("hotProduct",hotProduct);
 
         request.setAttribute("product",product);
         request.getRequestDispatcher("/productInfo.jsp").forward(request,response);
     }
 
+
+
+    //客服操作
+    //客服查看所有商品
+    public void findAllProductForAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取当前页
+        String currentPage = request.getParameter("currentPage");
+        if(currentPage == null){
+            currentPage = "1";
+        }
+        //定义每页显示的商品数量
+        int count = 6;
+
+        //调用业务逻辑
+        ProductService productService = new ProductServiceImpl();
+        PageBean<Product> allProduct = productService.findAllProduct(count, Integer.parseInt(currentPage));
+        //设置请求域的属性
+        request.setAttribute("products",allProduct);
+        request.getRequestDispatcher("/admin/productManager.jsp").forward(request,response);
+
+    }
+    //查找所有类别
+    public void findAllType(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        TypeService typeService = new TypeServiceImpl();
+        List<Type> types = typeService.findAll();
+
+        request.setAttribute("types",types);
+        request.getRequestDispatcher("/admin/typeManager.jsp").forward(request,response);
+
+    }
 }

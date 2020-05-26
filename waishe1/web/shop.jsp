@@ -198,19 +198,19 @@
                                                                 </div>
                                                                 <div class="item">
                                                                     <figure class="product-gallery__image">
-                                                                        <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                                                        <img src="${pageContext.request.contextPath}/${product.img_t2}" alt="Product">
                                                                         <span class="product-badge sale">Sale</span>
                                                                     </figure>
                                                                 </div>
                                                                 <div class="item">
                                                                     <figure class="product-gallery__image">
-                                                                        <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                                                        <img src="${pageContext.request.contextPath}/${product.img_t3}" alt="Product">
                                                                         <span class="product-badge sale">Sale</span>
                                                                     </figure>
                                                                 </div>
                                                                 <div class="item">
                                                                     <figure class="product-gallery__image">
-                                                                        <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                                                        <img src="${pageContext.request.contextPath}/${product.img_t4}" alt="Product">
                                                                         <span class="product-badge sale">Sale</span>
                                                                     </figure>
                                                                 </div>

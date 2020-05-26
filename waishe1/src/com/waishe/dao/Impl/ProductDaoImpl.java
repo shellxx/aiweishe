@@ -30,9 +30,9 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public List<Product> findAllProduct(int index,int currentPage) {
         QueryRunner queryRunner = new QueryRunner(C3p0Utils.getDataSource());
-        String sql = "select p.*,img.* \n" +
-                "from product p , pimg img \n" +
-                "where p.pid = img.pid and p.pflag=0  ORDER BY p.sales desc limit ?,?";
+        String sql = "select p.*,img.*,t.* \n" +
+                "from product p , pimg img ,type t \n" +
+                "where p.pid = img.pid and p.t_id = t.t_id and p.pflag=0  ORDER BY p.sales desc limit ?,?";
         try {
             List<Product> query = queryRunner.query(sql, new BeanListHandler<Product>(Product.class), index, currentPage);
             return query;
@@ -88,7 +88,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public List<Product> findNewProduct() {
         QueryRunner queryRunner = new QueryRunner(C3p0Utils.getDataSource());
-        String sql = "select p.*,img.img_t1 \n" +
+        String sql = "select p.*,img.* \n" +
                 "from product p , pimg img \n" +
                 "where p.pid = img.pid and p.pflag=0 order by p.pdate desc limit 0,8";
         try {
@@ -103,7 +103,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public List<Product> findHotProduct() {
         QueryRunner queryRunner = new QueryRunner(C3p0Utils.getDataSource());
-        String sql = "select p.*,img.img_t1 \n" +
+        String sql = "select p.*,img.* \n" +
                 "from product p , pimg img \n" +
                 "where p.pid = img.pid and p.pflag = 0 and p.is_hot !=0 ORDER BY p.is_hot desc limit 0,8;";
         try {
@@ -118,7 +118,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public List<Product> findDiscountProduct() {
         QueryRunner queryRunner = new QueryRunner(C3p0Utils.getDataSource());
-        String sql = "select p.*,img.img_t1 \n" +
+        String sql = "select p.*,img.* \n" +
                 "from product p , pimg img \n" +
                 "where p.pid = img.pid and p.pflag=0 and p.discount!=0 order by p.discount limit 0,2";
         try {

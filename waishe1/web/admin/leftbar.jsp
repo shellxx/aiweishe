@@ -13,7 +13,8 @@
 <!--left sidebar-->
 <div class="ui sidebar vertical left menu overlay  borderless visible sidemenu inverted  black" style="-webkit-transition-duration: 0.1s; transition-duration: 0.1s;" data-color="grey">
     <a class="item logo" href="${pageContext.request.contextPath}/admin/index.jsp">
-        <img src="img/logo.png" alt="stagblogo" /><img src="img/thumblogo.png" alt="stagblogo" class="displaynone" />
+        <img src="${pageContext.request.contextPath}/admin/img/logo.png" alt="stagblogo"  />
+        <img src="${pageContext.request.contextPath}/admin/img/logo.ico" alt="stagblogo" class="displaynone" />
     </a>
 
     <a class="item" href="${pageContext.request.contextPath}/admin/index.jsp" style="margin-top: 5px;">
@@ -27,10 +28,10 @@
             <i class="archive titleIcon icon"></i> 商品管理<i class="dropdown icon"></i>
         </a>
         <div class="content">
-            <a class="item" href="${pageContext.request.contextPath}/admin/productManager.jsp">
+            <a class="item" href="${pageContext.request.contextPath}/product/findAllProductForAdmin">
                 商品管理
             </a>
-            <a class="item" href="${pageContext.request.contextPath}/admin/typeManager.jsp">
+            <a class="item" href="${pageContext.request.contextPath}/product/findAllType">
                 类别管理
             </a>
         </div>
@@ -56,7 +57,7 @@
             <i class="dropdown icon"></i> 用户管理
         </div>
         <div class="content">
-            <a class="item" href="${pageContext.request.contextPath}/admin/userInfoManager.jsp">
+            <a class="item" href="${pageContext.request.contextPath}/admins/findAllUser">
                 用户管理
             </a>
 

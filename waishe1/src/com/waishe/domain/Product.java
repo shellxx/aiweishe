@@ -7,6 +7,7 @@ public class Product implements Serializable {
     private String pid;
     private String pname;
     private Integer t_id;
+    private String t_name;
     private Double old_price;
     private Double new_price;
     private Integer pnumber;//商品库存
@@ -16,14 +17,67 @@ public class Product implements Serializable {
     private Integer is_hot;//1表示热门 0 表示否
     private Integer pflag;//是否下架 1表示下架
     private String img_t1;//展示头图片 800*800
+    private String img_t2;
+    private String img_t3;
+    private String img_t4;
     private Double discount;//优惠折扣
     private Integer recommend;//是否推荐
     private String recommendInfo;//推荐语
     private Date recomm_date3;//限时特惠日期
     private String img_recommed;//推荐图片
     private String brand;
+    private String info1;
+    private String info2;
 
     public Product() {
+    }
+
+    public String getInfo1() {
+        return info1;
+    }
+
+    public void setInfo1(String info1) {
+        this.info1 = info1;
+    }
+
+    public String getInfo2() {
+        return info2;
+    }
+
+    public void setInfo2(String info2) {
+        this.info2 = info2;
+    }
+
+    public String getImg_t2() {
+        return img_t2;
+    }
+
+    public void setImg_t2(String img_t2) {
+        this.img_t2 = img_t2;
+    }
+
+    public String getImg_t3() {
+        return img_t3;
+    }
+
+    public void setImg_t3(String img_t3) {
+        this.img_t3 = img_t3;
+    }
+
+    public String getImg_t4() {
+        return img_t4;
+    }
+
+    public void setImg_t4(String img_t4) {
+        this.img_t4 = img_t4;
+    }
+
+    public String getT_name() {
+        return t_name;
+    }
+
+    public void setT_name(String t_name) {
+        this.t_name = t_name;
     }
 
     public String getPid() {

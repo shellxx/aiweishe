@@ -11,8 +11,8 @@
 <head>
     <meta charset="utf-8">
     <title>后台管理界面</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/admin/img/favicon.ico" />
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/admin/img/favicon.ico" />
+    <link rel="icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
     <!-- semantic ui css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/semantic/dist/semantic.css"/>
     <!-- 一些图标 -->
@@ -36,33 +36,34 @@
                     <!--maincontent-->
                     <div class="mainWrap navslide">
                         <div class="ui equal width left aligned padded grid stackable">
+                            <c:if test="${empty types}">
+                                <span>没有找到</span>
+                            </c:if>
+                            <c:if test="${!empty types}">
+                                <table class="ui violet selectable celled table">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>类别编号</th>
+                                        <th>类别名称</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${types}" var="type" varStatus="tag">
+                                        <tr>
+                                            <td>${tag.count}</td>
+                                            <td>${type.t_id}</td>
+                                            <td>${type.t_name}</td>
+                                            <td>
+                                                <input type="button" class="ui primary button"  name="delete" value="删除" /></td>
+                                        </tr>
+                                    </c:forEach>
 
-                            <table class="ui violet selectable celled table">
-                                <thead>
-                                <tr>
-                                    <th>序号</th>
-                                    <th>商品名称</th>
-                                    <th>所属类别</th>
-                                    <th>品牌</th>
-                                    <th>上架日期</th>
-                                    <th>原价</th>
-                                    <th>现价</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>约翰</td>
-                                    <td>没反应</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </c:if>
+
 
                         </div>
                     </div>

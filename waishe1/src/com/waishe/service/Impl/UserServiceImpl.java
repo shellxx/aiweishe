@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
     public Product findWishlistByone(String uid, String pid) {
         return userDao.findWishlistByone(uid, pid);
     }
+
+    @Override
+    public List<User> findAllUser() {
+        return userDao.findAllUser();
+    }
 }

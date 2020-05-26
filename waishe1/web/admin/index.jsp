@@ -10,8 +10,8 @@
 <head>
     <meta charset="utf-8">
     <title>后台管理界面</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/admin/img/favicon.ico" />
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/admin/img/favicon.ico" />
+    <link rel="icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
     <!-- semantic ui css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/semantic/dist/semantic.css"/>
     <!-- 一些图标 -->

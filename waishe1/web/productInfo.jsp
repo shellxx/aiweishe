@@ -44,10 +44,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="page-title">Product Details</h1>
+                    <h1 class="page-title">商品详情</h1>
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="current"><span>Product Details</span></li>
+                        <li><a href="index.html">首页</a></li>
+                        <li class="current"><span>商品详情</span></li>
                     </ul>
                 </div>
             </div>
@@ -90,21 +90,21 @@
                                             </div>
                                             <div class="item">
                                                 <figure class="product-gallery__image zoom">
-                                                    <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                                    <img src="${pageContext.request.contextPath}/${product.img_t2}"
                                                          alt="Product">
                                                     <span class="product-badge sale">Sale</span>
                                                 </figure>
                                             </div>
                                             <div class="item">
                                                 <figure class="product-gallery__image zoom">
-                                                    <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                                    <img src="${pageContext.request.contextPath}/${product.img_t3}"
                                                          alt="Product">
                                                     <span class="product-badge sale">Sale</span>
                                                 </figure>
                                             </div>
                                             <div class="item">
                                                 <figure class="product-gallery__image zoom">
-                                                    <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                                    <img src="${pageContext.request.contextPath}/${product.img_t4}"
                                                          alt="Product">
                                                     <span class="product-badge sale">Sale</span>
                                                 </figure>
@@ -171,19 +171,19 @@
                                         </div>
                                         <div class="item">
                                             <figure class="product-gallery__nav-image--single">
-                                                <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                                <img src="${pageContext.request.contextPath}/${product.img_t2}"
                                                      alt="Products">
                                             </figure>
                                         </div>
                                         <div class="item">
                                             <figure class="product-gallery__nav-image--single">
-                                                <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                                <img src="${pageContext.request.contextPath}/${product.img_t3}"
                                                      alt="Products">
                                             </figure>
                                         </div>
                                         <div class="item">
                                             <figure class="product-gallery__nav-image--single">
-                                                <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                                                <img src="${pageContext.request.contextPath}/${product.img_t4}"
                                                      alt="Products">
                                             </figure>
                                         </div>
@@ -282,25 +282,9 @@
                                 <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
                                      aria-labelledby="nav-description-tab">
                                     <div class="product-description">
+                                        <p>${product.info1}</p>
+                                        <p>${product.info2}</p>
                                         <p>${product.pinfo}</p>
-
-                                        <p>Lorem ipsum dolor sit amet, consec do eiusmod tincididunt ut labore et
-                                            dolore magna aliqua. Ut enim ad minim veniaLo ipsum dolor sit amet,
-                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                            exercitation ullamco.</p>
-
-                                        <h5 class="product-description__heading">Characteristics :</h5>
-                                        <!-- 商品其他特点 -->
-                                        <ul>
-                                            <li><i class="fa fa-circle"></i><span>Rsit amet, consectetur
-                                                        adipisicing elit, sed do eiusmod tempor inc.</span></li>
-                                            <li><i class="fa fa-circle"></i><span>sunt in culpa qui officia
-                                                        deserunt mollit anim id est laborum. </span></li>
-                                            <li><i class="fa fa-circle"></i><span>Lorem ipsum dolor sit amet,
-                                                        consec do eiusmod tincididu. </span></li>
-                                        </ul>
-
                                     </div>
                                 </div>
                                 <!-- 其他信息 -->
@@ -432,50 +416,39 @@
                                     "slidesToShow": 1
                                 }}
                             ]'>
-                            <!-- 底部推荐其他商品 -->
-                            <div class="item">
-                                <div class="payne-product">
-                                    <div class="product__inner">
-                                        <div class="product__image">
-                                            <figure class="product__image--holder">
-                                                <img src="" alt="Product">
-                                            </figure>
-                                            <a href="product-details.html" class="product__overlay"></a>
-                                            <div class="product__action">
-                                                <a data-toggle="modal" data-target="#productModal"
-                                                   class="action-btn">
-                                                    <i class="fa fa-eye"></i>
-                                                    <span class="sr-only">Quick View</span>
-                                                </a>
-                                                <a href="wishlist.html" class="action-btn">
-                                                    <i class="fa fa-heart-o"></i>
-                                                    <span class="sr-only">Add to wishlist</span>
-                                                </a>
-                                                <a href="compare.html" class="action-btn">
-                                                    <i class="fa fa-repeat"></i>
-                                                    <span class="sr-only">Add To Compare</span>
-                                                </a>
-                                                <a href="cart.html" class="action-btn">
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                    <span class="sr-only">Add To Cart</span>
-                                                </a>
+
+                            <br><br><br><br><br><br><br><br><br>
+                            <!-- 商品框 -->
+                            <c:forEach items="${hotProduct}" var="product2" varStatus="tag2">
+                                <div class="col-lg-3 col-md-4 col-sm-6 mb--65 mb-md--50">
+                                    <div class="payne-product">
+                                        <div class="product__inner">
+                                            <div class="product__image">
+                                                <figure class="product__image--holder">
+                                                    <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                                </figure>
+                                                <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product2.pid}" class="product-overlay"></a>
                                             </div>
-                                        </div>
-                                        <div class="product__info">
-                                            <div class="product__info--left">
-                                                <h3 class="product__title">
-                                                    <a href="product-details.html">Lexbaro Begadi</a>
-                                                </h3>
-                                                <div class="product__price">
-                                                    <span class="money">132.00</span>
-                                                    <span class="sign">$</span>
+                                                <%--                    商品信息--%>
+                                            <div class="product__info">
+                                                <div class="product__info--left">
+                                                    <h3 class="product__title">
+                                                        <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product2.pid}">${product2.pname}</a>
+                                                    </h3>
+                                                    <div class="product__price">
+                                                        <c:if test="${product2.new_price != product2.old_price }">
+                                                            <span class="money" style="text-decoration: line-through;color: lightgray;font-size: small"><em>${product2.old_price}</em><span class="sign">$</span></span>
+                                                        </c:if>
+                                                        <span class="money">${product2.new_price}</span>
+                                                        <span class="sign">$</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </c:forEach>
 
 
                         </div>

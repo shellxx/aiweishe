@@ -17,8 +17,6 @@ public interface UserDao {
     //修改用户
     int updateUser(User user);
 
-    // 查找所有用户
-    List<User> findAllUser();
 
     // 通过用户名和密码查找用户
     User findUserByUsernameAndPassword(String username,String password);
@@ -31,4 +29,8 @@ public interface UserDao {
     int deleteWishlist(String uid,String pid);
     //查询心愿单
     Product findWishlistByone(String uid,String pid);
+
+    //客服操作
+    //查找所有的用户
+    List<User> findAllUser();
 }

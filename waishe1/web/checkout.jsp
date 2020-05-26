@@ -44,10 +44,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="page-title">Checkout</h1>
+                    <h1 class="page-title">结算清单</h1>
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="current"><span>Checkout</span></li>
+                        <li><a href="index.html">首页</a></li>
+                        <li class="current"><span>结算清单</span></li>
                     </ul>
                 </div>
             </div>
@@ -66,10 +66,10 @@
                             <h2>结算明细</h2>
                         </div>
                         <div class="checkout-form">
-                            <form action="#" class="form form--checkout">
+                            <form action="${pageContext.request.contextPath}/order/update"  id="orderForm" class="form form--checkout" method="post">
                                 <div class="form-row mb--20">
                                     <div class="form__group col-md-6 mb-sm--30">
-                                        <label for="billing_fname" class="form__label">姓名  <span class="required">*</span></label>
+                                        <label for="billing_fname" class="form__label">姓名*：<span class="required">*</span></label>
                                         <input type="text" name="billing_fname" id="billing_fname" class="form__input">
                                     </div>
 
@@ -78,7 +78,7 @@
 
                                 <div class="form-row mb--20">
                                     <div class="form__group col-12">
-                                        <label for="billing_streetAddress" class="form__label">Street Address <span class="required">*</span></label>
+                                        <label for="billing_streetAddress" class="form__label">地址*：<span class="required">*</span></label>
 
                                         <input type="text" name="billing_streetAddress" id="billing_streetAddress" class="form__input mb--30" placeholder="House number and street name">
 
@@ -93,12 +93,12 @@
                                 </div>
 
 
-                                <div class="form-row">
-                                    <div class="form__group col-12">
-                                        <label for="orderNotes" class="form__label">Order Notes</label>
-                                        <textarea class="form__input form__input--textarea" id="orderNotes" name="orderNotes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                    </div>
-                                </div>
+<%--                                <div class="form-row">--%>
+<%--                                    <div class="form__group col-12">--%>
+<%--                                        <label for="orderNotes" class="form__label">备注</label>--%>
+<%--                                        <textarea class="form__input form__input--textarea" id="orderNotes" name="orderNotes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
                             </form>
                         </div>
                     </div>
@@ -117,44 +117,41 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th>Aliquam lobortis est
-                                            <strong><span>&#10005;</span>1</strong>
-                                        </th>
-                                        <td class="text-right">$80.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Auctor gravida enim
-                                            <strong><span>&#10005;</span>1</strong>
-                                        </th>
-                                        <td class="text-right">$60.00</td>
-                                    </tr>
+                                    <c:forEach items="${orders.orderItemVos}" var="orderItemVo">
+
+                                        <tr>
+                                            <th> ${orderItemVo.pname}
+                                                <strong><span>&#10005;</span>${orderItemVo.buyNum}</strong>
+                                            </th>
+                                            <td class="text-right">$${orderItemVo.subTotal}</td>
+                                        </tr>
+                                    </c:forEach>
+
                                     </tbody>
                                     <tfoot>
                                     <tr class="cart-subtotal">
                                         <th>商品总额</th>
-                                        <td class="text-right">$56.00</td>
+                                        <td class="text-right">$${orders.order_total}</td>
                                     </tr>
                                     <tr class="shipping">
                                         <th>运费</th>
                                         <td class="text-right">
-                                            <span>Flat Rate; $20.00</span>
+                                            <span>统一定价; $10.00</span>
                                         </td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>订单总计</th>
-                                        <td class="text-right"><span class="order-total-ammount">$56.00</span></td>
+                                        <td class="text-right"><span class="order-total-ammount">$${orders.order_total+10}</span></td>
                                     </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <div class="checkout-payment">
-                                <form action="#" class="payment-form">
                                     <div class="payment-group mt--20">
-                                        <p class="mb--15">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
-                                        <button type="submit" class="btn btn-size-md btn-fullwidth">Place Order</button>
+                                        <p class="mb--15"></p>
+                                        <button type="button" class="btn btn-size-md btn-fullwidth"
+                                                onclick="javascript:document.getElementById('orderForm').submit();">去付款</button>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>

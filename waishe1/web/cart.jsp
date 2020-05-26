@@ -154,7 +154,7 @@
                                                 <span>运费</span>
                                             </div>
                                             <div class="cart-calculator__item--value">
-                                                <span>Flat rate: $10.00</span>
+                                                <span>统一价格: $10.00</span>
 
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="checkout.html" class="btn btn-size-md btn-shape-square btn-fullwidth">
+                                <a href="${pageContext.request.contextPath}/order/generate" class="btn btn-size-md btn-shape-square btn-fullwidth">
                                     进行结算
                                 </a>
                             </div>

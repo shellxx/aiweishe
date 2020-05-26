@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="ui dropdown item">
-                <img class="ui mini circular image" src="img/avatar/people/enid.png" alt="label-image" />
+                <img class="ui mini circular image" src="${pageContext.request.contextPath}/resources/img/others/avatar-large-2.png" alt="label-image" />
                 <div class="menu">
                     <a class="item" href="mail.html">Inbox</a>
                     <a class="item" href="profile.html">Profile</a>

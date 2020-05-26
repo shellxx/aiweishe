@@ -7,8 +7,17 @@ public class Order_item implements Serializable {
     private String order_id;
     private String pid;
     private Integer account;
+    private Double subTotal;
 
     public Order_item() {
+    }
+
+    public Double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(Double subTotal) {
+        this.subTotal = subTotal;
     }
 
     public Integer getOitem_id() {

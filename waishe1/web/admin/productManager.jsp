@@ -11,8 +11,8 @@
 <head>
     <meta charset="utf-8">
     <title>后台管理界面</title>
-    <link rel="icon" href="${pageContext.request.contextPath}/admin/img/favicon.ico" />
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/admin/img/favicon.ico" />
+    <link rel="icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
     <!-- semantic ui css -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/admin/semantic/dist/semantic.css"/>
     <!-- 一些图标 -->
@@ -36,33 +36,63 @@
                     <!--maincontent-->
                     <div class="mainWrap navslide">
                         <div class="ui equal width left aligned padded grid stackable">
+                            <c:if test="${empty products}">
+                                <span>没有找到商品</span>
+                            </c:if>
+                            <c:if test="${!empty products}">
+                                <table class="ui violet selectable celled table">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>商品名称</th>
+                                        <th>所属类别</th>
+                                        <th>品牌</th>
+                                        <th>上架日期</th>
+                                        <th>原价</th>
+                                        <th>现价</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${products.list}" var="product" varStatus="tag">
+                                        <tr>
+                                            <td>${tag.count}</td>
+                                            <td>${product.pname}</td>
+                                            <td>${product.t_name}</td>
+                                            <td>${product.brand}</td>
+                                            <td>${product.pdate}</td>
+                                            <td>${product.old_price}</td>
+                                            <td>${product.new_price}</td>
+                                            <td><input type="button" class="ui primary button"  name="" value="修改" />
+                                                <input type="button" class="ui primary button"  name="delete" value="下架" /></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="ui right floated pagination menu">
+                                        <a class="icon item one-pan-link-mark ${products.currentPage==1 ? "disabled":""}"
+                                           href="${pageContext.request.contextPath}/product/findAllProductForAdmin?currentPage=${page.currentPage-1}">
+                                            <i class="left chevron icon"></i>
+                                        </a>
 
-                            <table class="ui violet selectable celled table">
-                                <thead>
-                                <tr>
-                                    <th>序号</th>
-                                    <th>商品名称</th>
-                                    <th>所属类别</th>
-                                    <th>品牌</th>
-                                    <th>上架日期</th>
-                                    <th>原价</th>
-                                    <th>现价</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>约翰</td>
-                                    <td>没反应</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                        <c:forEach begin="1" end="${products.totalPage}" var="page"  varStatus="status">
+                                            <c:if test="${page eq products.currentPage}">
+                                                <a class="item one-pan-link-mark active">${page}</a>
+                                            </c:if>
+                                            <c:if test="${!(page eq products.currentPage)}">
+                                                <a href="${pageContext.request.contextPath}/product/findAllProductForAdmin?currentPage=${page}" class="item one-pan-link-mark">${page}</a>
+                                            </c:if>
+                                        </c:forEach>
+
+                                        <a class="icon item one-pan-link-mark ${products.currentPage==products.totalPage ? "disabled":""}"
+                                        href="${pageContext.request.contextPath}/product/findAllProductForAdmin?currentPage=${page.currentPage+1}">
+                                            <i class="right chevron icon"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </c:if>
 
                         </div>
                     </div>

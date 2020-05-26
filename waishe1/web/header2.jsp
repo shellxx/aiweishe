@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="header__main">
                     <div class="header__col header__left">
-                        <a href="index.html" class="logo">
+                        <a href="${pageContext.request.contextPath}/" class="logo">
                             <figure class="logo--normal">
                                 <img src="${pageContext.request.contextPath}/resources/img/logo/logo.png" alt="Logo">
                             </figure>
@@ -91,7 +91,7 @@
                                 </li>
 
                                 <li class="mainmenu__item">
-                                    <a href="contact-us.html" class="mainmenu__link">Contact Us</a>
+                                    <a href="${pageContext.request.contextPath}/contactus.jsp" class="mainmenu__link">Contact Us</a>
                                 </li>
                             </ul>
                         </nav>

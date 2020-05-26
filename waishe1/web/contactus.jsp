@@ -72,7 +72,7 @@
                                 <input type="email" name="con_email" id="con_email" class="form__input mb--30" placeholder="Email*">
                                 <input type="text" name="con_name" id="con_name" class="form__input mb--30" placeholder="Name*">
                                 <textarea class="form__input form__input--textarea mb--30" placeholder="Message" id="con_message" name="con_message"></textarea>
-                                <button type="submit" class="btn btn-shape-round form__submit">Send Request</button>
+                                <button type="submit" class="btn btn-shape-round form__submit">发送</button>
                                 <div class="form__output"></div>
                             </form>
                         </div>

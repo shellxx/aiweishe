@@ -37,37 +37,35 @@
 
                             </div>
                         </h1>
-
-                        <div class="field">
-                            <label>
-                                Email or Username:
-                            </label>
-                            <div class="ui fluid icon input">
-                                <input name="user_name" id="u_name" type="email" autocomplete="off" style="width:100%!important;min-width:100%;width:100%;">
-                                <i class="icon mail outline"></i>
+                        <form method="post" action="${pageContext.request.contextPath}/admins/login" id="login_form">
+                            <div class="field">
+                                <label>
+                                    Username:
+                                </label>
+                                <div class="ui fluid icon input">
+                                    <input name="user_name" id="u_name" type="email" autocomplete="off" style="width:100%!important;min-width:100%;width:100%;">
+                                    <i class="icon mail outline"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label>
-                                Password:
-                            </label>
-                            <div class="ui fluid icon input">
-                                <input name="password" id="u_pass" type="password" autocomplete="off" style="width:100%!important;min-width:100%;width:100%;">
-                                <i class="icon key"></i>
+                            <div class="field">
+                                <label>
+                                    Password:
+                                </label>
+                                <div class="ui fluid icon input">
+                                    <input name="password" id="u_pass" type="password" autocomplete="off" style="width:100%!important;min-width:100%;width:100%;">
+                                    <i class="icon key"></i>
+                                </div>
+                                <span>${msg}</span>
                             </div>
-                        </div>
-                        <div class="field">
+                            <div class="field">
 
-                            <a class="ui teal right labeled icon button fluid" href="index.html">
-                                Login
-                                <i class="icon sign in"></i>
-                            </a>
+                                <a class="ui teal right labeled icon button fluid" href="javascript:document.getElementById('login_form').submit();">
+                                    Login
+                                    <i class="icon sign in"></i>
+                                </a>
+                            </div>
+                        </form>
 
-                            <a class="ui blue right labeled icon button fluid" href="index.html">
-                                Sign Up
-                                <i class="icon spy"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

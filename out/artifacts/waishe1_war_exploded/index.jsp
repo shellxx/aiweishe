@@ -9,9 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
+    <link rel="icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/admin/img/logo.ico" />
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Payne - Backpack eCommerce HTML Template</title>
+    <title>外接无副作用组织集体重组手术馆</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -221,19 +223,19 @@
                             </div>
                             <div class="item">
                               <figure class="product-gallery__image">
-                                <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                <img src="${pageContext.request.contextPath}/${product.img_t2}" alt="Product">
                                 <span class="product-badge sale">Sale</span>
                               </figure>
                             </div>
                             <div class="item">
                               <figure class="product-gallery__image">
-                                <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                <img src="${pageContext.request.contextPath}/${product.img_t3}" alt="Product">
                                 <span class="product-badge sale">Sale</span>
                               </figure>
                             </div>
                             <div class="item">
                               <figure class="product-gallery__image">
-                                <img src="${pageContext.request.contextPath}/${product.img_t1}" alt="Product">
+                                <img src="${pageContext.request.contextPath}/${product.img_t4}" alt="Product">
                                 <span class="product-badge sale">Sale</span>
                               </figure>
                             </div>
@@ -344,13 +346,13 @@
                         </div>
                         <div class="item">
                           <figure>
-                            <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                            <img src="${pageContext.request.contextPath}/${product.img_t2}"
                                  alt="Countdown Product">
                           </figure>
                         </div>
                         <div class="item">
                           <figure>
-                            <img src="${pageContext.request.contextPath}/${product.img_t1}"
+                            <img src="${pageContext.request.contextPath}/${product.img_t3}"
                                  alt="Countdown Product">
                           </figure>
                         </div>
@@ -441,7 +443,7 @@
                       <figure class="product__image--holder">
                         <img src="${product2.img_t1}" alt="Product">
                       </figure>
-                      <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product.pid}" class="product-overlay"></a>
+                      <a href="${pageContext.request.contextPath}/product/findProduct?pid=${product2.pid}" class="product-overlay"></a>
                       <div class="product__action">
                         <a data-toggle="modal" data-target="#productModal2${tag2.index}" class="action-btn">
                           <i class="fa fa-eye"></i>
@@ -500,19 +502,19 @@
                             </div>
                             <div class="item">
                               <figure class="product-gallery__image">
-                                <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                <img src="${pageContext.request.contextPath}/${product2.img_t2}" alt="Product">
                                 <span class="product-badge sale">Sale</span>
                               </figure>
                             </div>
                             <div class="item">
                               <figure class="product-gallery__image">
-                                <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                <img src="${pageContext.request.contextPath}/${product2.img_t3}" alt="Product">
                                 <span class="product-badge sale">Sale</span>
                               </figure>
                             </div>
                             <div class="item">
                               <figure class="product-gallery__image">
-                                <img src="${pageContext.request.contextPath}/${product2.img_t1}" alt="Product">
+                                <img src="${pageContext.request.contextPath}/${product2.img_t4}" alt="Product">
                                 <span class="product-badge sale">Sale</span>
                               </figure>
                             </div>

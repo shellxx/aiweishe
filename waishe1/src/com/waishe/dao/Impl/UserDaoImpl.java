@@ -49,10 +49,7 @@ public class UserDaoImpl implements UserDao {
         return 0;
     }
 
-    @Override
-    public List<User> findAllUser() {
-        return null;
-    }
+
 //查找当前用户的心愿单
     @Override
     public List<Product> findWishlist(String uid) {
@@ -102,6 +99,19 @@ public class UserDaoImpl implements UserDao {
         try {
             Product query = queryRunner.query(sql, new BeanHandler<Product>(Product.class), uid, pid);
             return query;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<User> findAllUser(){
+        QueryRunner queryRunner = new QueryRunner(C3p0Utils.getDataSource());
+        String sql = "select * from user";
+        try {
+            List<User> users = queryRunner.query(sql, new BeanListHandler<User>(User.class));
+            return users;
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,12 +1,18 @@
 package com.waishe.test;
 
+import com.waishe.constans.Global;
+import com.waishe.dao.Impl.OrderDaoImpl;
 import com.waishe.domain.*;
 import com.waishe.service.Impl.ProductServiceImpl;
 import com.waishe.service.Impl.UserServiceImpl;
 import com.waishe.service.ProductService;
 import com.waishe.service.UserService;
+import com.waishe.utils.UUIDUtils;
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -73,5 +79,26 @@ public class JdbcTest {
         for (Product product : wishlist) {
             System.out.println(product);
         }
+    }
+    @Test
+    public void testTime(){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date(System.currentTimeMillis());
+//        System.out.println(format.format(date));
+        System.out.println(date.toString());
+    }
+
+    @Test
+    public void testtimedao(){
+
+        Orders orders = new Orders();
+        orders.setOrder_id(UUIDUtils.getUUID());
+        orders.setCommit_time(new Date());
+        orders.setState(Global.ORDER_STATE_WEIFUKUAN);
+        orders.setUid("6936fd0520184507876eb0c1418919f1");
+        orders.setOrder_total(222.0);
+
+        OrderDaoImpl orderDao = new OrderDaoImpl();
+        orderDao.saveOrders(orders);
     }
 }
