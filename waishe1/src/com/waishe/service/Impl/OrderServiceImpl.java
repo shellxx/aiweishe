@@ -60,4 +60,14 @@ public class OrderServiceImpl implements OrderService {
     public void update(Orders orders) {
         orderDao.update(orders);
     }
+
+    @Override
+    public int deleteOrder(String id) throws SQLException {
+        return orderDao.deleteOrder(id);
+    }
+    @Override
+    public List<Orders> findAllOrder() throws SQLException {
+        return orderDao.findAllOrder();
+    }
+
 }

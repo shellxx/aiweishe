@@ -243,7 +243,7 @@
                                     </div>
                                 </div>
                                 <button type="button" class="btn btn-shape-square btn-size-sm"
-                                        onclick="window.location.href='cart.html'">
+                                        onclick="addMultToCart(${product.pid})">
                                     Add To Cart
                                 </button>
                             </div>
@@ -473,6 +473,21 @@
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </body>
 <script>
+    function addMultToCart(pid) {
+        var buyNum = $("#pro-qty").val();
+        $.ajax({
+            type:"get",
+            url:"${pageContext.request.contextPath}/carts/addToCart?pid="+pid+"&buyNum="+buyNum,
+            success:function (data) {
+                if(data.success){
+                    // $('.page.dimmer:first').dimmer('toggle')
+                    // ;
+                    alert("添加成功")
+                }
 
+            },
+            dataType: "json"
+        })
+    }
 </script>
 </html>

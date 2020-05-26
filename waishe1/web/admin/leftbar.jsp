@@ -28,13 +28,14 @@
             <i class="archive titleIcon icon"></i> 商品管理<i class="dropdown icon"></i>
         </a>
         <div class="content">
-            <a class="item" href="${pageContext.request.contextPath}/product/findAllProductForAdmin">
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllProduct">
                 商品管理
             </a>
-            <a class="item" href="${pageContext.request.contextPath}/product/findAllType">
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllType">
                 类别管理
             </a>
         </div>
+
 
         <div class="title item">
             <i class="book titleIcon icon"></i>
@@ -42,13 +43,10 @@
             <i class="dropdown icon"></i> 订单管理
         </div>
         <div class="content">
-            <a class="item" href="${pageContext.request.contextPath}/admin/orderManager.jsp">
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllOrder">
                 订单管理
             </a>
 
-            <a class="item" href="chat.html">
-                追踪订单
-            </a>
         </div>
 
         <div class="title item">
@@ -57,11 +55,11 @@
             <i class="dropdown icon"></i> 用户管理
         </div>
         <div class="content">
-            <a class="item" href="${pageContext.request.contextPath}/admins/findAllUser">
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllUser">
                 用户管理
             </a>
 
-            <a class="item" href="${pageContext.request.contextPath}/admin/uservipManager.jsp">
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllUserVip">
                 会员管理
             </a>
         </div>
@@ -77,8 +75,8 @@
                 商品管理
             </div>
             <div class="ui divider"></div>
-            <a class="item" href="${pageContext.request.contextPath}/admin/productManager.jsp"> 商品管理 </a>
-            <a class="item" href="${pageContext.request.contextPath}/admin/typeManager.jsp"> 类别管理 </a>
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllProduct"> 商品管理 </a>
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllType"> 类别管理 </a>
         </div>
     </div>
 
@@ -90,7 +88,7 @@
                 订单管理
             </div>
             <div class="ui divider"></div>
-            <a class="item" href="${pageContext.request.contextPath}/admin/orderManager.jsp">订单管理</a>
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllOrder">订单管理</a>
             <a class="item" href="filter.html">追踪订单</a>
         </div>
     </div>
@@ -103,8 +101,8 @@
                 用户管理
             </div>
             <div class="ui divider"></div>
-            <a class="item" href="${pageContext.request.contextPath}/admin/userInfoManager.jsp">用户管理</a>
-            <a class="item" href="${pageContext.request.contextPath}/admin/uservipManager.jsp">会员管理</a>
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllUser">用户管理</a>
+            <a class="item" href="${pageContext.request.contextPath}/rooter/selectAllUserVip">会员管理</a>
         </div>
     </div>
 </div>

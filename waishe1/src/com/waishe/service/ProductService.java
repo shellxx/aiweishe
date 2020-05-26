@@ -3,6 +3,7 @@ package com.waishe.service;
 import com.waishe.domain.PageBean;
 import com.waishe.domain.Product;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductService {
@@ -21,5 +22,20 @@ public interface ProductService {
     PageBean<Product> findAllProductBytid(int tid, int count, int currentPage);
     //通过pid查找商品
     Product findByID(String pid);
+
+    List<Product> findAllProduct() throws SQLException;
+    /**
+     * 根据id删除商品
+     * @param id
+     * @return
+     */
+    int deleteProduct(String id) throws SQLException;
+    /**
+     * 修改商品
+     * @param product
+     * @return
+     */
+    int updateProduct(Product product) throws SQLException;
+
 
 }

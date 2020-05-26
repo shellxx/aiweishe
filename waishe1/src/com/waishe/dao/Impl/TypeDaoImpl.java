@@ -29,8 +29,12 @@ public class TypeDaoImpl implements TypeDao {
     }
 
     @Override
-    public int delete(Integer id) {
-        return 0;
+    public int deleteType(String id) throws SQLException {
+        //创建QueryRunner
+        QueryRunner qr=new QueryRunner(C3p0Utils.getDataSource());
+        //执行update
+        String sql ="delete from type where t_id = ?";
+        return qr.update(sql,id);
     }
 
     @Override

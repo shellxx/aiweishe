@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<script src="${pageContext.request.contextPath}/admin/js/jquery-2.1.4.min.js" charset="utf-8"></script>
 <head>
     <meta charset="utf-8">
     <title>后台管理界面</title>
@@ -23,61 +24,90 @@
     <link href="${pageContext.request.contextPath}/admin/plugins/chartist/chartist.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/admin/css/chat-page.css" rel="stylesheet" />
 </head>
+<script>
+    $(function(){
+        //为删除按钮添加点击事件
+        $("button.del").click(function(){
+            //点击按钮谈一个确认弹框 删除+xxx的姓名
+            //tong过当前按纽获取username的值,this代表当前对象,dom对象
+            var username = $(this).parent().siblings("td.username").text();
+            if (confirm("确定要删除用户"+username+"的信息吗?")){
+                //1.删除表中数据
+                $.ajax({
+                    type:"GET",
+                    url:"${pageContext.request.contextPath}/rooter/deleteByUId?id="+$(this).parent().siblings("td.id").text(),
+                    success:function(data){
+                        alert(data.success);
+                        if(data.success){
+                            //2.删除一行
+                            $(this).parent().parent().remove();
+                        }else{
+                            alert("删除失败")
+                        }
+                    },
+                    dataType:"json"
+                });
+            }
+        });
+    })
+</script>
+
 <body>
-    <div id="contextWrap">
-        <%@ include file="leftbar.jsp"%>
+<div id="contextWrap">
+    <%@ include file="leftbar.jsp"%>
 
 
-            <!-- 中间主体部分 -->
-            <div class="pusher">
-                <%@ include file="navbar.jsp"%>
+    <!-- 中间主体部分 -->
+    <div class="pusher">
+        <%@ include file="navbar.jsp"%>
 
-                <%--主体内容--%>
-                    <!--maincontent-->
-                    <div class="mainWrap navslide">
-                        <div class="ui equal width left aligned padded grid stackable">
-                            <c:if test="${empty requestScope.users}">
-                                用户信息还是空的
-                            </c:if>
-                            <c:if test="${!empty requestScope.users}">
-                                <table class="ui violet selectable celled table">
-                                    <thead>
-                                    <tr>
-                                        <th>序号</th>
-                                        <th>用户名</th>
-                                        <th>密码</th>
-                                        <th>邮箱</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${requestScope.users}" var="us" varStatus="tag">
-                                        <tr>
-                                            <td>${tag.count}</td>
-                                            <td>${us.u_username}</td>
-                                            <td>${us.u_password}</td>
-                                            <td>${us.u_email}</td>
-                                            <td>
-                                                <input type="button" class="ui primary button"  name="update" value="修改" />
-                                                <input type="button" class="ui primary button"  name="delete" value="删除" />
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
+        <%--主体内容--%>
+        <!--maincontent-->
+        <div class="mainWrap navslide">
+            <div class="ui equal width left aligned padded grid stackable">
 
-                                    </tbody>
-                                </table>
-                            </c:if>
-
-
-                        </div>
-                    </div>
+                <table class="ui violet selectable celled table">
+                    <thead>
+                    <tr>
+                        <th>用户编号</th>
+                        <th>用户账号</th>
+                        <th>Email</th>
+                        <th>联系电话</th>
+                        <th>真实姓名</th>
+                        <th>家庭住址</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:if test="${!empty userList}">
+                        <c:forEach var="user" items="${userList}" varStatus="index">
+                            <%--      每循环 一次都要写一行         --%>
+                            <tr>
+                                <td class="id">${user.uid}</td>
+                                <td class="username">${user.u_username}</td>
+                                <td >${user.u_password}</td>
+                                <td >${user.u_email}</td>
+                                <td >${user.u_phone}</td>
+                                <td >${user.u_name}</td>
+                                <td >${user.u_address}</td>
+                                <td><a href="${pageContext.request.contextPath}/admin/update.jsp?id=${user.uid}">修改</a></td>
+                                <td><button class="del" style='text-decoration:underline'>删除</button></td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    </tbody>
+                </table>
             </div>
-
+        </div>
     </div>
+
+</div>
+<c:if test="${empty userList}">
+没有查找到任何数据！
+</c:if>
 </body>
 <!-- script -->
 <!-- jquery -->
-<script src="${pageContext.request.contextPath}/admin/js/jquery-2.1.4.min.js" charset="utf-8"></script>
 <!-- semantic -->
 <script src="${pageContext.request.contextPath}/admin/semantic/dist/semantic.js" charset="utf-8"></script>
 <!-- <script src="js/semantic.min.js"></script> -->

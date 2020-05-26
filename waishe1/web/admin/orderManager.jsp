@@ -8,6 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<script src="${pageContext.request.contextPath}/admin/js/jquery-2.1.4.min.js" charset="utf-8"></script>
 <head>
     <meta charset="utf-8">
     <title>后台管理界面</title>
@@ -23,56 +24,92 @@
     <link href="${pageContext.request.contextPath}/admin/plugins/chartist/chartist.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/admin/css/chat-page.css" rel="stylesheet" />
 </head>
+<script>
+    $(function(){
+        //为删除按钮添加点击事件
+        $("button.del").click(function(){
+            //点击按钮谈一个确认弹框 删除+xxx的姓名
+            //tong过当前按纽获取username的值,this代表当前对象,dom对象
+            var name = $(this).parent().siblings("td.username").text();
+            if (confirm("确定要删除商品"+name+"的信息吗?")){
+                //1.删除表中数据
+                $.ajax({
+                    type:"GET",
+                    url:"${pageContext.request.contextPath}/rooter/deleteByOrderId?id="+$(this).parent().siblings("td.id").text(),
+                    success:function(data){
+                        alert(data.success);
+                        if(data.success){
+                            //2.删除一行
+                            $(this).parent().parent().remove();
+                        }else{
+                            alert("删除失败")
+                        }
+                    },
+                    dataType:"json"
+                });
+            }
+        });
+    })
+</script>
+
 <body>
-    <div id="contextWrap">
-        <%@ include file="leftbar.jsp"%>
+<div id="contextWrap">
+    <%@ include file="leftbar.jsp"%>
 
 
-            <!-- 中间主体部分 -->
-            <div class="pusher">
-                <%@ include file="navbar.jsp"%>
+    <!-- 中间主体部分 -->
+    <div class="pusher">
+        <%@ include file="navbar.jsp"%>
 
-                <%--主体内容--%>
-                    <!--maincontent-->
-                    <div class="mainWrap navslide">
-                        <div class="ui equal width left aligned padded grid stackable">
+        <%--主体内容--%>
+        <!--maincontent-->
+        <div class="mainWrap navslide">
+            <div class="ui equal width left aligned padded grid stackable">
 
-                            <table class="ui violet selectable celled table">
-                                <thead>
-                                <tr>
-                                    <th>序号</th>
-                                    <th>商品名称</th>
-                                    <th>所属类别</th>
-                                    <th>品牌</th>
-                                    <th>上架日期</th>
-                                    <th>原价</th>
-                                    <th>现价</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>约翰</td>
-                                    <td>没反应</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
+                <table class="ui violet selectable celled table">
+                    <thead>
+                    <tr>
+                        <th>订单编号</th>
+                        <th>商品编号</th>
+                        <th>订单总价</th>
+                        <th>提交价格</th>
+                        <th>提交时间</th>
+                        <th>到货时间</th>
+                        <th>状态</th>
+                        <th>操作员编号</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:if test="${!empty userList}">
+                        <c:forEach var="order" items="${userList}" varStatus="index">
+                            <%--      每循环 一次都要写一行         --%>
+                            <tr>
+                                <td class="id">${order.order_id}</td>
+                                <td class="username">${order.uid}</td>
+                                <td >${order.order_total}</td>
+                                <td>${order.order_atotal}</td>
+                                <td>${order.commit_time}</td>
+                                <td>${order.finish_time}</td>
+                                <td>${order.state}</td>
+                                <td>${order.cus_id}</td>
+                                <td><a href="${pageContext.request.contextPath}/admin/updateProduct.jsp?id=${product.pid}">修改</a></td>
+                                <td><button class="del" style='text-decoration:underline'>删除</button></td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    </tbody>
+                </table>
             </div>
-
+        </div>
     </div>
+
+</div>
+<c:if test="${empty userList}">
+    没有查找到任何数据！
+</c:if>
 </body>
 <!-- script -->
 <!-- jquery -->
-<script src="${pageContext.request.contextPath}/admin/js/jquery-2.1.4.min.js" charset="utf-8"></script>
 <!-- semantic -->
 <script src="${pageContext.request.contextPath}/admin/semantic/dist/semantic.js" charset="utf-8"></script>
 <!-- <script src="js/semantic.min.js"></script> -->

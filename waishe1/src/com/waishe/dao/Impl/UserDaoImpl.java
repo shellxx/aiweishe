@@ -39,18 +39,29 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    public int deleteUser(String  id) throws SQLException {
+        //创建QueryRunner
+        QueryRunner qr=new QueryRunner(C3p0Utils.getDataSource());
+        //执行update
+        String sql ="delete from user where uid =?";
+        return qr.update(sql,id);
+    }
     @Override
-    public int deleteUser(String id) {
-        return 0;
+    public int updateUser(User user) throws SQLException {
+        //创建QueryRunner
+        QueryRunner qr=new QueryRunner(C3p0Utils.getDataSource());
+        //执行update
+        String sql ="update user set u_username=?,u_password=?,u_email=?,u_phone=?,u_name=?,u_address=? where uid=?";
+        return  qr.update(sql,user.getU_username(),user.getU_password(),user.getU_email(),user.getU_phone(),user.getU_name(),user.getU_address() ,user.getUid());
     }
 
     @Override
-    public int updateUser(User user) {
-        return 0;
+    public User selectUserById(String id) throws SQLException {
+        QueryRunner qr= new QueryRunner(C3p0Utils.getDataSource());
+        return qr.query("select * from user where uid = ?",new BeanHandler<User>(User.class),id);
     }
 
-
-//查找当前用户的心愿单
+    //查找当前用户的心愿单
     @Override
     public List<Product> findWishlist(String uid) {
         QueryRunner queryRunner = new QueryRunner(C3p0Utils.getDataSource());

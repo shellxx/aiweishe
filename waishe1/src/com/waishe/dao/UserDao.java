@@ -3,6 +3,7 @@ package com.waishe.dao;
 import com.waishe.domain.Product;
 import com.waishe.domain.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao {
@@ -12,11 +13,12 @@ public interface UserDao {
     int insertUser(User user);
 
     //根据id删除用户
-    int deleteUser(String id);
+    int deleteUser(String id) throws SQLException;
 
     //修改用户
-    int updateUser(User user);
+    int updateUser(User user) throws SQLException;
 
+    User selectUserById(String id) throws SQLException;
 
     // 通过用户名和密码查找用户
     User findUserByUsernameAndPassword(String username,String password);

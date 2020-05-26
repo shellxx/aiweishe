@@ -6,6 +6,7 @@ import com.waishe.domain.Product;
 import com.waishe.domain.User;
 import com.waishe.service.UserService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -14,6 +15,22 @@ public class UserServiceImpl implements UserService {
     public int register(User user) {
         return userDao.insertUser(user);
     }
+
+    @Override
+    public int deleteUser(String id) throws SQLException {
+        return  userDao.deleteUser(id);
+    }
+
+    @Override
+    public int updateUser(User user) throws SQLException {
+        return  userDao.updateUser(user);
+    }
+
+    @Override
+    public User selectUserById(String id) throws SQLException {
+        return userDao.selectUserById(id);
+    }
+
 
     @Override
     public User login(String username, String password) {

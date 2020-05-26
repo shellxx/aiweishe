@@ -6,6 +6,7 @@ import com.waishe.domain.PageBean;
 import com.waishe.domain.Product;
 import com.waishe.service.ProductService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
@@ -76,5 +77,21 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findByID(String pid) {
         return productDao.findByid(pid);
+    }
+
+    @Override
+    public List<Product> findAllProduct() throws SQLException {
+        return productDao.findAllProduct();
+    }
+
+    @Override
+    public int deleteProduct(String id) throws SQLException {
+        return productDao.deleteProduct(id);
+    }
+
+
+    @Override
+    public int updateProduct(Product product) throws SQLException {
+        return productDao.updateProduct(product);
     }
 }

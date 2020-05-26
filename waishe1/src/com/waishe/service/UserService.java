@@ -3,6 +3,7 @@ package com.waishe.service;
 import com.waishe.domain.Product;
 import com.waishe.domain.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserService {
@@ -22,5 +23,23 @@ public interface UserService {
     //客服操作
     //查找所有的用户
     List<User> findAllUser();
+
+
+    /**
+     * 根据id删除用户
+     * @param id
+     * @return
+     */
+
+    int deleteUser(String id) throws SQLException;
+    /**
+     * 修改用户
+     * @param user
+     * @return
+     */
+
+    int updateUser(User user) throws SQLException;
+    User selectUserById(String id) throws SQLException;
+
 
 }

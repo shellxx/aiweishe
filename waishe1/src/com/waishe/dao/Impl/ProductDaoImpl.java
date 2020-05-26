@@ -160,4 +160,10 @@ public class ProductDaoImpl implements ProductDao {
         }
         return null;
     }
+
+    @Override
+    public List<Product> findAllProduct() throws SQLException {
+        QueryRunner qr = new QueryRunner(C3p0Utils.getDataSource());
+        return qr.query("select * from product ",new BeanListHandler<Product>(Product.class));
+    }
 }

@@ -4,6 +4,7 @@ import com.waishe.domain.Order_item;
 import com.waishe.domain.Orders;
 import com.waishe.domain.vo.OrderItemVo;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface OrderService {
@@ -42,4 +43,14 @@ public interface OrderService {
      * @param orders
      */
     void update(Orders orders);
+
+    /**
+     * 删除某个订单
+     */
+    int deleteOrder(String id) throws SQLException;
+
+    /**
+     * 查找所有订单
+     */
+    List<Orders> findAllOrder() throws SQLException;
 }

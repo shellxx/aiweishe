@@ -2,6 +2,7 @@ package com.waishe.dao;
 
 import com.waishe.domain.Type;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface TypeDao {
@@ -19,11 +20,11 @@ public interface TypeDao {
     int insert(Type type);
 
     /**
-     * 通过id删除商品类型
+     * 根据id删除商品
      * @param id
      * @return
      */
-    int delete(Integer id);
+    int deleteType(String id) throws SQLException;
 
     /**
      * 修改商品类型

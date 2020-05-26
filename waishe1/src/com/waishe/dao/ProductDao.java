@@ -2,6 +2,7 @@ package com.waishe.dao;
 
 import com.waishe.domain.Product;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductDao {
@@ -40,4 +41,8 @@ public interface ProductDao {
     List<Product> findRecommendProduct();
     //通过pid查找商品
     Product findByid(String pid);
+
+    //查找所有商品
+    List<Product> findAllProduct() throws SQLException;
+
 }

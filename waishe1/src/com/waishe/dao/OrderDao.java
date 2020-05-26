@@ -45,4 +45,15 @@ public interface OrderDao {
      * @throws SQLException
      */
     void update(Orders orders);
+
+
+    /**
+     * 删除某个订单
+     */
+    int deleteOrder(String id) throws SQLException;
+
+    /**
+     * 查找所有订单
+     */
+    List<Orders> findAllOrder() throws SQLException;
 }

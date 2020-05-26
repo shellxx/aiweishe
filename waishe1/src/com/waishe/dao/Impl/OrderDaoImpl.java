@@ -86,4 +86,20 @@ public class OrderDaoImpl implements OrderDao {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public int deleteOrder(String id) throws SQLException {
+        //创建QueryRunner
+        QueryRunner qr=new QueryRunner(C3p0Utils.getDataSource());
+        //执行update
+        String sql ="delete from `order` where order_id = ?";
+        return  qr.update(sql,id);
+    }
+
+    @Override
+    public List<Orders> findAllOrder() throws SQLException {
+        //创建QueryRunner
+        QueryRunner qr=new QueryRunner(C3p0Utils.getDataSource());
+        return qr.query("select * from `order`",new BeanListHandler<>(Orders.class));
+    }
 }

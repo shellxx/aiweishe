@@ -90,11 +90,14 @@ public class OrderServlet extends BaseServlet {
         response.sendRedirect(request.getContextPath()+"/checkout.jsp");
     }
     //更新订单
-    private void update(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    public void update(HttpServletRequest request,HttpServletResponse response) throws IOException {
         //获取参数
+
         String address = request.getParameter("billing_streetAddress");
         String name = request.getParameter("billing_fname");
         String telephone = request.getParameter("billing_phone");
+
+        System.out.println(address+" "+name+" "+telephone);
         //获取orders
         Orders orders = (Orders) request.getSession().getAttribute("orders");
         orders.setAddress(address);
@@ -105,7 +108,7 @@ public class OrderServlet extends BaseServlet {
         orderService.update(orders);
         //下一步就可以跳转到支付页面
         //支付成功以后从session中移除
-        response.sendRedirect(request.getContextPath()+"/view/order/pay.jsp");
+        response.sendRedirect(request.getContextPath()+"/checkoutSuccess.jsp");
     }
     public void clearCart(HttpServletRequest request){
         request.getSession().removeAttribute("cart");

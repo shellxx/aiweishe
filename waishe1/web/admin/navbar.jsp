@@ -26,32 +26,6 @@
             <div class="ui dropdown item labeled icon">
                 <i class="bell icon"></i>
                 <div class="ui red label mini circular">6</div>
-                <div class="menu">
-                    <div class="header">
-                        People You Might Know
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="img/avatar/people/enid.png" alt="label-image" /> Janice Robinson
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="img/avatar/people/Hershell.png" alt="label-image" /> Cynthia May
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="img/avatar/people/Rick.png" alt="label-image" /> Hugh Carter
-                    </div>
-                    <div class="header">
-                        Your Friends' Friends
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="img/avatar/people/Meggie.png" alt="label-image" /> Pauline Cain
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="img/avatar/people/Glenn.png" alt="label-image" /> Marco Beck
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="img/avatar/people/Daryl.png" alt="label-image" /> Sue Quinn
-                    </div>
-                </div>
             </div>
             <div class="ui dropdown item">
                 <img class="ui mini circular image" src="${pageContext.request.contextPath}/resources/img/others/avatar-large-2.png" alt="label-image" />
