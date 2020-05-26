@@ -134,6 +134,7 @@
                                                 <div class="form__group">
                                                     <label class="form__label" for="cofirm_password">确认密码 <span class="required">*</span></label>
                                                     <input type="password" id="cofirm_password" class="form__input">
+                                                    <span id="confim_msg" style="color: red"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -197,6 +198,14 @@
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </body>
 <script>
+    $("#cofirm_password").blur(function () {
+        $("#confim_msg").text("")
+        var password = $("#password").val()
+        var confim_password = $("#cofirm_password").val()
+        if(password != confim_password){
+            $("#confim_msg").text("两次密码不一致")
+        }
+    })
 var code = ""
     function sendEmail(){
         var email = $("#email").val()
